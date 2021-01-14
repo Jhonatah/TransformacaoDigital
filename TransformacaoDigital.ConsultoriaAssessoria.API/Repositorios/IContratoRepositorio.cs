@@ -9,6 +9,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios
     {
         Task<Paginador<object>> ListarAsync(int pagina);
         Task<object> ListarTiposAsync();
+        Task<object> ListarEmpresasAsync(Guid contratoId);
 
         Task<object> LerPorIdAsync(Guid id);
 

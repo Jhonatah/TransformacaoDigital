@@ -20,6 +20,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementa
             if (model == null) return;
 
             model.Nome = contrato.Nome;
+            model.Descricao = contrato.Descricao;
             model.Ativo = contrato.Ativo;
             model.TipoContratoId = contrato.TipoContratoId;
 
@@ -64,6 +65,20 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementa
                 {
                     x.Id,
                     x.Nome
+                }).ToListAsync();
+        }
+
+        public async Task<object> ListarEmpresasAsync(Guid contratoId)
+        {
+            return await
+                Contexto.Empresas.AsNoTracking()
+                .Where(x => x.Contratos.Any(y => y.ContratoId == contratoId))
+                .Select(s => new
+                {
+                    s.Id,
+                    s.NomeFantasia,
+                    s.RazaoSocial,
+                    s.CNPJ
                 }).ToListAsync();
         }
     }

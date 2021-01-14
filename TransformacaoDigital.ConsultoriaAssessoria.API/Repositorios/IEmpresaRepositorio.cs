@@ -11,6 +11,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios
         Task<object> ListarTiposAsync();
 
         Task<object> LerPorIdAsync(Guid id);
+        Task<bool> CNPJExisteAsync(string cnpj);
 
         Task CadastrarAsync(Empresa empresa);
         Task AlterarAsync(Guid id, Empresa empresa);

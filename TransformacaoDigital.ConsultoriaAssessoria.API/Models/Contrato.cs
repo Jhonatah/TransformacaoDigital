@@ -16,6 +16,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Models
         public Guid Id { get; private set; } = Guid.NewGuid();
         public byte TipoContratoId { get; set; }
         public string Nome { get; set; }
+        public string Descricao { get; set; }
         public DateTime DataCadastro { get; private set; }
         public bool Ativo { get; set; } = true;
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Dtos;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Models;
@@ -11,29 +13,62 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementa
         {
         }
 
-        public Task AlterarAsync(Guid id, Empresa empresa)
+        public async Task AlterarAsync(Guid id, Empresa empresa)
         {
-            throw new NotImplementedException();
+            var model = await Contexto.Empresas.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (model == null) return;
+
+            model.RazaoSocial = empresa.RazaoSocial;
+            model.NomeFantasia = empresa.NomeFantasia;
+            model.TipoEmpresaId = empresa.TipoEmpresaId;
+            model.Email = empresa.Email;
+
+            await Contexto.SaveChangesAsync();
         }
 
-        public Task CadastrarAsync(Empresa empresa)
+        public async Task CadastrarAsync(Empresa empresa)
         {
-            throw new NotImplementedException();
+            Contexto.Empresas.Add(empresa);
+
+            await Contexto.SaveChangesAsync();
         }
 
-        public Task<object> LerPorIdAsync(Guid id)
+        public async Task<object> LerPorIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await
+                Contexto.Contratos.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<Paginador<object>> ListarAsync(int pagina)
+        public async Task<Paginador<object>> ListarAsync(int pagina)
         {
-            throw new NotImplementedException();
+            pagina = pagina < 1 ? 1 : pagina;
+            int take = 10, skip = (pagina - 1) * take;
+
+            var registros =
+                await Contexto.Empresas.AsNoTracking()
+                .OrderByDescending(x => x.DataCadastro)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
+
+            var total = await Contexto.Empresas.CountAsync();
+
+            return new Paginador<object>(registros, pagina, total);
         }
 
-        public Task<object> ListarTiposAsync()
+        public async Task<object> ListarTiposAsync()
         {
-            throw new NotImplementedException();
+            return await
+                Contexto.TiposEmpresas.AsNoTracking()
+                .Select(x => new
+                {
+                    x.Id,
+                    x.Nome
+                }).ToListAsync();
         }
+
+        public async Task<bool> CNPJExisteAsync(string cnpj) 
+            => await Contexto.Empresas.AnyAsync(x => x.CNPJ == cnpj);
     }
 }

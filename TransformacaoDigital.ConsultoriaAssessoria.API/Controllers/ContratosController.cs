@@ -16,22 +16,21 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
         }
 
         [HttpGet]
-        [Route("/{pagina:int}")]
+        [Route("{pagina:int}")]
         public async Task<IActionResult> ListarContratos(int pagina = 1)
         {
             return await Response(await _contratoRepositorio.ListarAsync(pagina));
         }
 
         [HttpGet]
-        [Route("/{id:guid}")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> LerContratoPorId(Guid id)
         {
             return await Response(await _contratoRepositorio.LerPorIdAsync(id));
         }
 
-
         [HttpGet]
-        [Route("/{id:guid/empresas}")]
+        [Route("{id:guid}/empresas")]
         public async Task<IActionResult> ListarEmpresasDoContrato(Guid id)
         {
             return await Response(await _contratoRepositorio.ListarEmpresasAsync(id));
@@ -53,6 +52,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
             return ResponseBadRequest("Objeto inválido");
 
         }
+
         [HttpPut]
         [Route("{id:guid}")]
         public async Task<IActionResult> AlterarContrato(Guid id, ContratoViewModel viewModel)

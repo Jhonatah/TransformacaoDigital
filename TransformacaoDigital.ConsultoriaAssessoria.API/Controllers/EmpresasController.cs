@@ -16,14 +16,14 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
         }
 
         [HttpGet]
-        [Route("/{pagina:int}")]
+        [Route("{pagina:int}")]
         public async Task<IActionResult> ListarEmpresas(int pagina = 1)
         {
             return await Response(await _empresaRepositorio.ListarAsync(pagina));
         }
 
         [HttpGet]
-        [Route("/{id:guid}")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> LerEmpresaPorId(Guid id)
         {
             return await Response(await _empresaRepositorio.LerPorIdAsync(id));
@@ -31,7 +31,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
 
 
         [HttpGet]
-        [Route("/{id:guid/contratos}")]
+        [Route("{id:guid}/contratos")]
         public async Task<IActionResult> ListarEmpresasDoContrato(Guid id)
         {
             return await Response(await _empresaRepositorio.LerPorIdAsync(id));
@@ -44,7 +44,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
             {
                 var cnpjExiste = await _empresaRepositorio.CNPJExisteAsync(viewModel.CNPJ);
 
-                if(cnpjExiste)
+                if (cnpjExiste)
                 {
                     return ResponseBadRequest($"O CNPJ {viewModel.CNPJ} já está cadastrado");
                 }

@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
+using System.IO;
+using System.Reflection;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementacoes;
 
@@ -27,7 +30,25 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API
                         .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole())));
 
             services.AddControllers();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("ConsultoriaAssessoria", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "Rotas para Microsserviço de Consultorias e Assessorias.",
+                    Version = "v1"
+                });
+                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "Rotas para Microsserviço de Consultorias e Assessorias.",
+                    Version = "v1"
+                });
+
+                // Set the comments path for the Swagger JSON and UI.
+                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //x.IncludeXmlComments(xmlPath);
+            });
+
 
             services.AddScoped<IContratoRepositorio, ContratoRepositorio>();
             services.AddScoped<IEmpresaRepositorio, EmpresaRepositorio>();
@@ -51,6 +72,8 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Consultoria e Assessoria");
+
+                //c.SwaggerEndpoint("/swagger/ConsultoriaAssessoria/swagger.json", "API Consultoria e Assessoria");
             });
 
             app.UseRouting();

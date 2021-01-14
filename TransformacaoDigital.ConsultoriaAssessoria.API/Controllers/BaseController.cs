@@ -4,8 +4,9 @@ using System.Threading.Tasks;
 namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
 {
     [Route("api/[controller]")]
+    [ApiExplorerSettings(GroupName = "v1")]
     [ApiController]
-    public class BaseController : ControllerBase
+    public abstract class BaseController : ControllerBase
     {
         protected new async Task<IActionResult> Response(object result = null)
         {

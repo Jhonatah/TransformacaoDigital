@@ -5,6 +5,7 @@ namespace TransformacaoDigital.Normas.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [ApiExplorerSettings(GroupName = "ConsultoriaAssessoria")]
     public abstract class BaseNormasController : ControllerBase
     {
         protected new async Task<IActionResult> Response(object result = null)

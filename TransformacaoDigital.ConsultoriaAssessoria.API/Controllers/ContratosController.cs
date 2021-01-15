@@ -44,7 +44,8 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
                 await _contratoRepositorio.CadastrarAsync(
                     new Models.Contrato(
                         viewModel.TipoContratoId,
-                        viewModel.Nome));
+                        viewModel.Nome,
+                        viewModel.Descricao));
 
                 return await Response();
             }
@@ -67,7 +68,8 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
                 await _contratoRepositorio.AlterarAsync(id,
                     new Models.Contrato(
                         viewModel.TipoContratoId,
-                        viewModel.Nome));
+                        viewModel.Nome,
+                        viewModel.Descricao));
 
                 return await Response();
             }

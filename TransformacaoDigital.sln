@@ -19,9 +19,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcessosIndustriais", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.ProcessoIndustrial.API", "TransformacaoDigital.ProcessoIndustrial.API\TransformacaoDigital.ProcessoIndustrial.API.csproj", "{863F9BD4-5993-4DF5-96DB-57B2D29D3225}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MOM", "MOM", "{8A733EC8-04D3-40CD-B8C5-EFF2383172F2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Mensageria", "TransformacaoDigital.Mensageria\TransformacaoDigital.Mensageria.csproj", "{7ECDA848-F45E-4470-9BF3-5D657C196822}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Share", "Share", "{918FEC1B-0042-4C51-89AD-D89538BD1681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Autenticacao.API", "TransformacaoDigital.Autenticacao.API\TransformacaoDigital.Autenticacao.API.csproj", "{FC1D4725-FDDD-48CA-B949-09D537B4A027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Library", "TransformacaoDigital.Library\TransformacaoDigital.Library.csproj", "{C8406129-FBF8-4A83-A917-A9FECF57EF12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,14 @@ Global
 		{7ECDA848-F45E-4470-9BF3-5D657C196822}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ECDA848-F45E-4470-9BF3-5D657C196822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ECDA848-F45E-4470-9BF3-5D657C196822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC1D4725-FDDD-48CA-B949-09D537B4A027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC1D4725-FDDD-48CA-B949-09D537B4A027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC1D4725-FDDD-48CA-B949-09D537B4A027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC1D4725-FDDD-48CA-B949-09D537B4A027}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8406129-FBF8-4A83-A917-A9FECF57EF12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8406129-FBF8-4A83-A917-A9FECF57EF12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8406129-FBF8-4A83-A917-A9FECF57EF12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8406129-FBF8-4A83-A917-A9FECF57EF12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,7 +70,8 @@ Global
 		{8E341B9D-FFB9-4C96-8BD6-7DE26ECCBAC3} = {878D22D8-19B2-47B0-AC2D-6C8A2E813540}
 		{0A403215-B444-4566-BE6D-0629A303E97B} = {F2C8C988-527F-450E-BBFA-6549B9E1F8DE}
 		{863F9BD4-5993-4DF5-96DB-57B2D29D3225} = {9E912D42-A3C8-4339-A26E-112101C81DCE}
-		{7ECDA848-F45E-4470-9BF3-5D657C196822} = {8A733EC8-04D3-40CD-B8C5-EFF2383172F2}
+		{7ECDA848-F45E-4470-9BF3-5D657C196822} = {918FEC1B-0042-4C51-89AD-D89538BD1681}
+		{C8406129-FBF8-4A83-A917-A9FECF57EF12} = {918FEC1B-0042-4C51-89AD-D89538BD1681}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {62F392ED-2E96-4586-A14F-8CF6E214CF33}

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 
 namespace TransformacaoDigital.Autenticacao.API.Configuracoes
@@ -16,7 +17,23 @@ namespace TransformacaoDigital.Autenticacao.API.Configuracoes
             services.Configure<ConfiguracaoJWTSetting>(configuration.GetSection("ConfiguracaoJWT"));
 
             services.AddSingleton<IPostConfigureOptions<JwtBearerOptions>, ConfigureJwtBearerOptions>();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
+            {
+                //o.TokenValidationParameters = new TokenValidationParameters()
+                //{
+                //    //ValidateIssuer = true,
+                //    ValidAudiences = new List<string>()
+                //    {
+                //      "http://localhost:62633",
+                //      "http://localhost:61870"
+                //    },
+                //    ValidIssuers = new List<string>()
+                //    {
+                //        "http://localhost:61870"
+                //    },
+                //    ValidateAudience = false
+                //};
+            });
 
             services.AddAuthorization(options =>
             {
@@ -46,14 +63,14 @@ namespace TransformacaoDigital.Autenticacao.API.Configuracoes
 
             options.ClaimsIssuer = jwtAuthentication.ValidIssuer;
             options.IncludeErrorDetails = true;
-            options.RequireHttpsMetadata = true;
+            options.RequireHttpsMetadata = false;
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateActor = true,
+                ValidateActor = false,
                 ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
+                ValidateAudience = false,
+                ValidateLifetime = false,
+                ValidateIssuerSigningKey = false,
                 ValidIssuer = jwtAuthentication.ValidIssuer,
                 ValidAudience = jwtAuthentication.ValidAudience,
                 IssuerSigningKey = jwtAuthentication.SymmetricSecurityKey,

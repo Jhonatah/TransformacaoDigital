@@ -5,11 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
-using System.IO;
-using System.Reflection;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementacoes;
+using TransformacaoDigital.Filters.Middlewares;
 
 namespace TransformacaoDigital.ConsultoriaAssessoria.API
 {
@@ -29,20 +29,49 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                         .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole())));
 
+            services.AddHttpClient("apiautenticacao", x =>
+            {
+                x.BaseAddress = new Uri(Configuration["AppAutenticacao:HostName"]);
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(x =>
             {
-                x.SwaggerDoc("ConsultoriaAssessoria", new Microsoft.OpenApi.Models.OpenApiInfo
+                x.SwaggerDoc("ConsultoriaAssessoria", new OpenApiInfo
                 {
                     Title = "Rotas para Microsserviço de Consultorias e Assessorias.",
                     Version = "v1"
                 });
-                x.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                x.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Rotas para Microsserviço de Consultorias e Assessorias.",
                     Version = "v1"
                 });
 
+                x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Token Credencial",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
                 // Set the comments path for the Swagger JSON and UI.
                 //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -61,6 +90,8 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseMiddleware<ValidarBearerMeddleWare>();
 
             app.UseHttpsRedirection();
 

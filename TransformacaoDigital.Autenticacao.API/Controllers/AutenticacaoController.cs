@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using TransformacaoDigital.Autenticacao.API.Models;
 using TransformacaoDigital.Autenticacao.API.Repositorios;
@@ -11,7 +15,7 @@ namespace TransformacaoDigital.Autenticacao.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(JwtBearerDefaults.AuthenticationScheme)]
     public class AutenticacaoController : ControllerBase
     {
         public AutenticacaoController(JWTService jWTService,
@@ -53,10 +57,17 @@ namespace TransformacaoDigital.Autenticacao.API.Controllers
         [Route("ValidateToken")]
         public IActionResult ValidToken(string token)
         {
-            var valido = _jwtService.TokenValido(token);
+            var valido = _jwtService.TokenValido(HttpContext.Request.Headers[HeaderNames.Authorization]);
 
             if (valido) return Ok();
             return BadRequest();
+        }
+
+        [HttpGet]
+        [Route("GetId")]
+        public IActionResult GetUserId()
+        {
+            return Ok(User.GetClaim(JwtRegisteredClaimNames.Jti));
         }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementacoes;
+using TransformacaoDigital.ConsultoriaAssessoria.API.Services;
 using TransformacaoDigital.Filters.Middlewares;
 
 namespace TransformacaoDigital.ConsultoriaAssessoria.API
@@ -81,6 +82,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API
 
             services.AddScoped<IContratoRepositorio, ContratoRepositorio>();
             services.AddScoped<IEmpresaRepositorio, EmpresaRepositorio>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

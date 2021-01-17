@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios;
+using TransformacaoDigital.ConsultoriaAssessoria.API.Services;
 using TransformacaoDigital.ConsultoriaAssessoria.API.ViewModels;
 
 namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
@@ -10,7 +11,8 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
     {
         private readonly IContratoRepositorio _contratoRepositorio;
 
-        public ContratosController(IContratoRepositorio contratoRepositorio)
+        public ContratosController(IUsuarioService usuarioService,
+            IContratoRepositorio contratoRepositorio) : base(usuarioService)
         {
             _contratoRepositorio = contratoRepositorio;
         }

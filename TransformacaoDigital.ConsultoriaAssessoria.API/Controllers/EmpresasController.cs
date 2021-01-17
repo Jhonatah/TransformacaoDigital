@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios;
+using TransformacaoDigital.ConsultoriaAssessoria.API.Services;
 using TransformacaoDigital.ConsultoriaAssessoria.API.ViewModels;
 
 namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
@@ -10,7 +11,8 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
     {
         private readonly IEmpresaRepositorio _empresaRepositorio;
 
-        public EmpresasController(IEmpresaRepositorio empresaRepositorio)
+        public EmpresasController(IUsuarioService usuarioService,
+            IEmpresaRepositorio empresaRepositorio) : base(usuarioService)
         {
             _empresaRepositorio = empresaRepositorio;
         }
@@ -51,7 +53,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
 
                 await _empresaRepositorio.CadastrarAsync(
                     new Models.Empresa(
-                        Guid.NewGuid(),
+                        UsuarioId,
                         viewModel.TipoEmpresaId,
                         viewModel.CNPJ,
                         viewModel.RazaoSocial,

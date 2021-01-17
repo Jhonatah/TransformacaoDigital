@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
+using System;
 using System.Threading.Tasks;
+using TransformacaoDigital.ConsultoriaAssessoria.API.Services;
 
 namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
 {
@@ -8,6 +11,26 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
     [ApiController]
     public abstract class BaseController : ControllerBase
     {
+        public BaseController(IUsuarioService usuarioService)
+        {
+            _usuarioService = usuarioService;
+        }
+
+        private readonly IUsuarioService _usuarioService;
+        private Guid _userId = Guid.Empty;
+        protected Guid UsuarioId 
+        { 
+            get
+            {
+                if(_userId == Guid.Empty)
+                {
+                    _userId = _usuarioService.GerUserId(HttpContext.Request.Headers[HeaderNames.Authorization.Replace("Bearer ", "")]);
+                }
+
+                return _userId;
+            }
+        }
+
         protected new async Task<IActionResult> Response(object result = null)
         {
             try

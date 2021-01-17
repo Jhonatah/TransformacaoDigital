@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios;
+using TransformacaoDigital.ConsultoriaAssessoria.API.Services;
 
 namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
 {
@@ -8,7 +9,8 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
     {
         private readonly IContratoRepositorio _contratoRepositorio;
 
-        public TiposContratosController(IContratoRepositorio contratoRepositorio)
+        public TiposContratosController(IUsuarioService usuarioService,
+            IContratoRepositorio contratoRepositorio) : base(usuarioService)
         {
             _contratoRepositorio = contratoRepositorio;
         }

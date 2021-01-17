@@ -65,7 +65,7 @@ namespace TransformacaoDigital.Autenticacao.API.Controllers
 
         [HttpGet]
         [Route("GetId")]
-        public IActionResult GetUserId()
+        public IActionResult GetUserId(string token)
         {
             return Ok(User.GetClaim(JwtRegisteredClaimNames.Jti));
         }

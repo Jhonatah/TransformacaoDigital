@@ -39,7 +39,7 @@ namespace TransformacaoDigital.UI.Controllers
         public JsonResult SendMensagem()
         {
             _senderService.Send(Mensageria.QueueEnum.ProcessosInternos, new { ID = 10, Nome = "Teste Com Objeto", Data = DateTime.Now });
-            _senderService.Send(Mensageria.QueueEnum.Normas, new { ID = 10, Nome = "Teste Com Objeto", Data = DateTime.Now });
+            _senderService.Send(Mensageria.QueueEnum.Normas, new { TipoNormaId = 2, Nome = $"Mensagem - {DateTime.Now.ToString("yyyyMMddHHmmss")}", Descricao="Uma descrição Qualquer" });
             _senderService.Send(Mensageria.QueueEnum.ConsultoriasAssessorias, new { ID = 10, Nome = "Teste Com Objeto", Data = DateTime.Now });
             _senderService.Send(Mensageria.QueueEnum.IntegracaoERPProcessosInternos, new { ID = 10, Nome = "Teste Com Objeto", Data = DateTime.Now });
 

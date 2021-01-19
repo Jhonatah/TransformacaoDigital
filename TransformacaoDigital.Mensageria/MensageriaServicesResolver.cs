@@ -11,6 +11,7 @@ namespace TransformacaoDigital.Mensageria
         {
             services.AddScoped<ISenderService, SenderService>();
             services.AddScoped<IReceiveService, ReceiveService>();
+            //services.AddSingleton<RabbitListener>();
         }
 
         public static void RegisterMoMServices(
@@ -24,10 +25,6 @@ namespace TransformacaoDigital.Mensageria
                 configurationServer.Password);
 
             _RegiterService(services);
-        }
-
-        public static void ReceiveMessages(this IApplicationBuilder app, IReceiveService receiveService)
-        {
         }
     }
 

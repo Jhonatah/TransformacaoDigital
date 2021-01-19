@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RabbitMQ.Client;
-using System;
 using System.Text;
 
 namespace TransformacaoDigital.Mensageria.Services.Implementations
@@ -21,12 +20,6 @@ namespace TransformacaoDigital.Mensageria.Services.Implementations
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
-                //channel.QueueDeclare(queue: queue.GetName(),
-                //                     durable: false,
-                //                     exclusive: false,
-                //                     autoDelete: false,
-                //                     arguments: null);
-
                 string message = JsonConvert.SerializeObject(objMessage);
                 var body = Encoding.UTF8.GetBytes(message);
 

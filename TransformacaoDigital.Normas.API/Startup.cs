@@ -5,8 +5,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TransformacaoDigital.Filters.Middlewares;
+using TransformacaoDigital.Mensageria;
+using TransformacaoDigital.Mensageria.Middlewares;
+using TransformacaoDigital.Mensageria.Services;
 using TransformacaoDigital.Normas.API.Repositorios;
 using TransformacaoDigital.Normas.API.Repositorios.Implementacoes;
+using TransformacaoDigital.Normas.API.Services;
+using TransformacaoDigital.Normas.API.Services.Implementacoes;
+using TransformacaoDigital.Normas.API.WorkersHandlers;
 
 namespace TransformacaoDigital.Normas.API
 {
@@ -30,6 +37,24 @@ namespace TransformacaoDigital.Normas.API
             services.AddSwaggerGen();
 
             services.AddScoped<INormasRepositorio, NormasRepositorio>();
+            services.AddScoped<INormaService, NormaService>();
+
+            services.RegisterMoMServices(new ConfigurationServer
+            {
+                HostName = Configuration["RabbitMQConfig:HostName"],
+                UserName = Configuration["RabbitMQConfig:UserName"],
+                Password = Configuration["RabbitMQConfig:Password"],
+            });
+
+            //services.AddHostedService<MensageriaWorkerBackgroundService>(x =>
+            //{
+            //    return new MensageriaWorkerBackgroundService(
+            //        x.GetService<ILoggerFactory>(),
+            //        x.CreateScope().ServiceProvider.GetService<IEventHandler>(),
+            //        x.CreateScope().ServiceProvider.GetService<IReceiveService>());
+            //});
+
+            //services.AddHostedService<NormasEventHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +66,8 @@ namespace TransformacaoDigital.Normas.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<ValidarBearerMeddleWare>();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();

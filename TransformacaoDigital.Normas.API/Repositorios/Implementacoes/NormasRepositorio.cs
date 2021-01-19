@@ -32,6 +32,12 @@ namespace TransformacaoDigital.Normas.API.Repositorios.Implementacoes
             await Contexto.SaveChangesAsync();
         }
 
+        public void Cadastrar(Norma norma)
+        {
+            Contexto.Normas.Add(norma);
+            Contexto.SaveChanges();
+        }
+
         public async Task<object> LerPorIdAsync(Guid id)
         {
             return await Contexto.Normas.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);

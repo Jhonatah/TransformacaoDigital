@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using TransformacaoDigital.Normas.API.WorkersHandlers;
 
 namespace TransformacaoDigital.Normas.API
 {
@@ -21,6 +17,10 @@ namespace TransformacaoDigital.Normas.API
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                })
+                .ConfigureServices(x =>
+                {
+                    x.AddHostedService<NormasEventHandler>();
                 });
     }
 }

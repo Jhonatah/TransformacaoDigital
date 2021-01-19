@@ -3,33 +3,38 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.UI", "TransformacaoDigital.UI\TransformacaoDigital.UI.csproj", "{DF365EA0-E7A0-4573-9049-B27131121FAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.UI", "TransformacaoDigital.UI\TransformacaoDigital.UI.csproj", "{DF365EA0-E7A0-4573-9049-B27131121FAE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{D7FC7B89-377A-4E6E-87AA-FB6CCE9F34A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsultoriaAssessoria", "ConsultoriaAssessoria", "{878D22D8-19B2-47B0-AC2D-6C8A2E813540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.ConsultoriaAssessoria.API", "TransformacaoDigital.ConsultoriaAssessoria.API\TransformacaoDigital.ConsultoriaAssessoria.API.csproj", "{8E341B9D-FFB9-4C96-8BD6-7DE26ECCBAC3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.ConsultoriaAssessoria.API", "TransformacaoDigital.ConsultoriaAssessoria.API\TransformacaoDigital.ConsultoriaAssessoria.API.csproj", "{8E341B9D-FFB9-4C96-8BD6-7DE26ECCBAC3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Normas", "Normas", "{F2C8C988-527F-450E-BBFA-6549B9E1F8DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Normas.API", "TransformacaoDigital.Normas.API\TransformacaoDigital.Normas.API.csproj", "{0A403215-B444-4566-BE6D-0629A303E97B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.Normas.API", "TransformacaoDigital.Normas.API\TransformacaoDigital.Normas.API.csproj", "{0A403215-B444-4566-BE6D-0629A303E97B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcessosIndustriais", "ProcessosIndustriais", "{9E912D42-A3C8-4339-A26E-112101C81DCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.ProcessoIndustrial.API", "TransformacaoDigital.ProcessoIndustrial.API\TransformacaoDigital.ProcessoIndustrial.API.csproj", "{863F9BD4-5993-4DF5-96DB-57B2D29D3225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.ProcessoIndustrial.API", "TransformacaoDigital.ProcessoIndustrial.API\TransformacaoDigital.ProcessoIndustrial.API.csproj", "{863F9BD4-5993-4DF5-96DB-57B2D29D3225}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Mensageria", "TransformacaoDigital.Mensageria\TransformacaoDigital.Mensageria.csproj", "{7ECDA848-F45E-4470-9BF3-5D657C196822}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.Mensageria", "TransformacaoDigital.Mensageria\TransformacaoDigital.Mensageria.csproj", "{7ECDA848-F45E-4470-9BF3-5D657C196822}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Share", "Share", "{918FEC1B-0042-4C51-89AD-D89538BD1681}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Autenticacao.API", "TransformacaoDigital.Autenticacao.API\TransformacaoDigital.Autenticacao.API.csproj", "{FC1D4725-FDDD-48CA-B949-09D537B4A027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.Autenticacao.API", "TransformacaoDigital.Autenticacao.API\TransformacaoDigital.Autenticacao.API.csproj", "{FC1D4725-FDDD-48CA-B949-09D537B4A027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Library", "TransformacaoDigital.Library\TransformacaoDigital.Library.csproj", "{C8406129-FBF8-4A83-A917-A9FECF57EF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.Library", "TransformacaoDigital.Library\TransformacaoDigital.Library.csproj", "{C8406129-FBF8-4A83-A917-A9FECF57EF12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Autenticacao", "Autenticacao", "{DA1BB5F5-016A-42CB-A081-8F956D87577A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransformacaoDigital.Filters", "TransformacaoDigital.Filters\TransformacaoDigital.Filters.csproj", "{13C45413-3414-4DCF-8C83-9963469FB1FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.Filters", "TransformacaoDigital.Filters\TransformacaoDigital.Filters.csproj", "{13C45413-3414-4DCF-8C83-9963469FB1FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{534B1AB0-B133-4B7A-B82B-3D4B19964786}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>a7c27300-c624-4144-afae-fc3f5675c293</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +21,11 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TransformacaoDigital.Filters\TransformacaoDigital.Filters.csproj" />
+    <ProjectReference Include="..\TransformacaoDigital.Mensageria\TransformacaoDigital.Mensageria.csproj" />
   </ItemGroup>
 
 </Project>

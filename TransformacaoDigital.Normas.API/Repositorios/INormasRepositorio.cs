@@ -13,6 +13,7 @@ namespace TransformacaoDigital.Normas.API.Repositorios
         Task<object> LerPorIdAsync(Guid id);
 
         Task CadastrarAsync(Norma norma);
+        void Cadastrar(Norma norma);
         Task AlterarAsync(Guid id, Norma norma);
     }
 }

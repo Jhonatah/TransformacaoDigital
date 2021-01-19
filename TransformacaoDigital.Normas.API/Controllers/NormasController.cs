@@ -7,7 +7,6 @@ using TransformacaoDigital.Normas.API.ViewModels;
 
 namespace TransformacaoDigital.Normas.API.Controllers
 {
-    [Route("api/[controller]")]
     public class NormasController : BaseNormasController
     {
         private readonly INormasRepositorio _normasRepositorio;
@@ -18,14 +17,14 @@ namespace TransformacaoDigital.Normas.API.Controllers
         }
 
         [HttpGet]
-        [Route("/{pagina:int}")]
+        [Route("{pagina:int}")]
         public async Task<IActionResult> Listar(int pagina = 1)
         {
             return await Response(await _normasRepositorio.ListarAsync(pagina));
         }
 
         [HttpGet]
-        [Route("/{id:guid}")]
+        [Route("{id:guid}")]
         public async Task<IActionResult> LerPorId(Guid id)
         {
             return await Response(await _normasRepositorio.LerPorIdAsync(id));

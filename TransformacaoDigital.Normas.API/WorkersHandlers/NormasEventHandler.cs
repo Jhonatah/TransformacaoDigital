@@ -7,9 +7,7 @@ using TransformacaoDigital.Mensageria;
 using TransformacaoDigital.Mensageria.Middlewares;
 using TransformacaoDigital.Mensageria.Services;
 using TransformacaoDigital.Mensageria.Services.Implementations;
-using TransformacaoDigital.Normas.API.Repositorios.Implementacoes;
 using TransformacaoDigital.Normas.API.Services;
-using TransformacaoDigital.Normas.API.Services.Implementacoes;
 using TransformacaoDigital.Normas.API.ViewModels;
 
 namespace TransformacaoDigital.Normas.API.WorkersHandlers
@@ -49,7 +47,6 @@ namespace TransformacaoDigital.Normas.API.WorkersHandlers
                 !string.IsNullOrEmpty(viewModel.Nome) &&
                 viewModel.TipoNormaId > 0)
             {
-                //_normaService = (INormaService)_serviceProvider.GetService(typeof(INormaService));
                 _normaService.Cadastrar(viewModel);
 
                 return CommandResponse.OK_Result;
@@ -77,11 +74,6 @@ namespace TransformacaoDigital.Normas.API.WorkersHandlers
                     var t = ex.Message;
                 }
             }
-        }
-
-        public override void Dispose()
-        {
-
         }
     }
 }

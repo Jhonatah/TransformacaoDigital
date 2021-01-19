@@ -7,13 +7,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TransformacaoDigital.Filters.Middlewares;
 using TransformacaoDigital.Mensageria;
-using TransformacaoDigital.Mensageria.Middlewares;
-using TransformacaoDigital.Mensageria.Services;
 using TransformacaoDigital.Normas.API.Repositorios;
 using TransformacaoDigital.Normas.API.Repositorios.Implementacoes;
 using TransformacaoDigital.Normas.API.Services;
 using TransformacaoDigital.Normas.API.Services.Implementacoes;
-using TransformacaoDigital.Normas.API.WorkersHandlers;
 
 namespace TransformacaoDigital.Normas.API
 {
@@ -45,16 +42,6 @@ namespace TransformacaoDigital.Normas.API
                 UserName = Configuration["RabbitMQConfig:UserName"],
                 Password = Configuration["RabbitMQConfig:Password"],
             });
-
-            //services.AddHostedService<MensageriaWorkerBackgroundService>(x =>
-            //{
-            //    return new MensageriaWorkerBackgroundService(
-            //        x.GetService<ILoggerFactory>(),
-            //        x.CreateScope().ServiceProvider.GetService<IEventHandler>(),
-            //        x.CreateScope().ServiceProvider.GetService<IReceiveService>());
-            //});
-
-            //services.AddHostedService<NormasEventHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

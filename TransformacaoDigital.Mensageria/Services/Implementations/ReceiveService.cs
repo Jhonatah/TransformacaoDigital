@@ -1,7 +1,6 @@
 ﻿using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace TransformacaoDigital.Mensageria.Services.Implementations
 {
@@ -31,11 +30,6 @@ namespace TransformacaoDigital.Mensageria.Services.Implementations
                     var body = eventArgs.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);
                     var response = handler.HandlerMessage(message);
-
-                    //if (response.Ok)
-                    //    channel.BasicAck(eventArgs.DeliveryTag, false);
-
-                    //channel.BasicNack(eventArgs.DeliveryTag, false, false);
                 };
 
                 channel.BasicConsume(queue: _queueName,

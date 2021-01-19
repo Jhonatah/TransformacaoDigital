@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace TransformacaoDigital.Mensageria.Services
+﻿namespace TransformacaoDigital.Mensageria.Services
 {
     public interface IEventHandler
     {

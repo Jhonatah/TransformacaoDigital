@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using TransformacaoDigital.Mensageria.Services;
 using TransformacaoDigital.Mensageria.Services.Implementations;
 
@@ -11,7 +10,6 @@ namespace TransformacaoDigital.Mensageria
         {
             services.AddScoped<ISenderService, SenderService>();
             services.AddScoped<IReceiveService, ReceiveService>();
-            //services.AddSingleton<RabbitListener>();
         }
 
         public static void RegisterMoMServices(

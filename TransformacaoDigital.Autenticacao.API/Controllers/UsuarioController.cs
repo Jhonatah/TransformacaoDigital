@@ -16,9 +16,9 @@ namespace TransformacaoDigital.Autenticacao.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(JwtBearerDefaults.AuthenticationScheme)]
-    public class AutenticacaoController : ControllerBase
+    public class UsuarioController : ControllerBase
     {
-        public AutenticacaoController(JWTService jWTService,
+        public UsuarioController(JWTService jWTService,
             IUsuarioRepositorio usuarioRepositorio)
         {
             _jwtService = jWTService;

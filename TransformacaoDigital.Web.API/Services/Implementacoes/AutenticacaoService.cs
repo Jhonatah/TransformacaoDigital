@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using TransformacaoDigital.Library;
 using TransformacaoDigital.Library.Enumerados;
 using TransformacaoDigital.Web.API.RoutesApis;
+using TransformacaoDigital.Web.API.Services.Dtos;
 
 namespace TransformacaoDigital.Web.API.Services.Implementacoes
 {
@@ -12,10 +13,10 @@ namespace TransformacaoDigital.Web.API.Services.Implementacoes
             : base(httpClientFactory, Enums.HttpClientesEnums.Autenticacao) { }
 
 
-        public async Task LoginAsync(string email, string senha)
+        public async Task<ResponseObj<object>> LoginAsync(string email, string senha)
         {
             var token = new GeneratorTokenLogin(email, senha);
-            await PostAsync<object>(RoutesAutenticacao.LOGIN, new { token.Token });
+            return await PostAsync<object>(RoutesAutenticacao.LOGIN, new { token.Token });
         }
     }
 

@@ -9,13 +9,13 @@ using TransformacaoDigital.Library;
 
 namespace TransformacaoDigital.Filters.Middlewares
 {
-    public class ValidarBearerMeddleWare
+    public class ValidarBearerMiddleWare
     {
         private readonly RequestDelegate _next;
         private string _hostAPI;
         private string _hostRouteValidateToken;
 
-        public ValidarBearerMeddleWare(RequestDelegate next)
+        public ValidarBearerMiddleWare(RequestDelegate next)
         {
             _next = next;
         }

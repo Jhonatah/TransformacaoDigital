@@ -48,6 +48,7 @@ namespace TransformacaoDigital.Autenticacao.API.Services
                     new Claim(JwtRegisteredClaimNames.UniqueName, usuario.Email),
                     new Claim(JwtRegisteredClaimNames.GivenName, usuario.Nome),
                     new Claim(JwtRegisteredClaimNames.Email, usuario.Email),
+                    new Claim("UserType", "registrado"), //Claim personalizada para diponibilizar acesso em rotas na api gateway
                     new Claim("PerfilNome", usuario.Perfil.Nome),
                     new Claim("PerfilId", usuario.Perfil.Id.ToString())
                 },

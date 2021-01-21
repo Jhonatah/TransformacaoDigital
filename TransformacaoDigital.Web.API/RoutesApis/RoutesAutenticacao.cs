@@ -2,6 +2,6 @@
 {
     public static class RoutesAutenticacao
     {
-        public static string LOGIN = "Login";
+        public static string LOGIN = "/api/autenticacao/login";
     }
 }

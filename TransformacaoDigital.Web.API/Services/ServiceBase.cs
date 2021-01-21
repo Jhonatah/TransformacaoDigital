@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using TransformacaoDigital.Web.API.Enums;
 using TransformacaoDigital.Web.API.Services.Dtos;
@@ -31,9 +33,16 @@ namespace TransformacaoDigital.Web.API.Services
             throw new Exception();
         }
 
-        protected async Task<ResponseObj<T>> PostAsync<T>(string urlComplemento, object data)
+        protected async Task<ResponseObj<T>> PostAsync<T>(string urlComplemento, object dataObj)
         {
-            throw new Exception();
+            var json = JsonConvert.SerializeObject(dataObj);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpCliente.PostAsync(urlComplemento, data);
+
+            return new ResponseObj<T>(response.StatusCode)
+            {
+            };
         }
 
         protected async Task<ResponseObj<T>> PutAsync<T>(string urlComplemento, object data)

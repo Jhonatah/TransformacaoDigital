@@ -51,6 +51,26 @@
         "AllowedScopes": []
 
       }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 62649
+        }
+      ],
+      "UpstreamPathTemplate": "/processosindustriais-api/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "RouteClaimsRequeriment": {
+        "UserType": "registrado"
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+
+      }
     }
   ],
   "GlobalConfiguration": {

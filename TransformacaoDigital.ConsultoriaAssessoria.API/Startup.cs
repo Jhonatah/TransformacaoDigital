@@ -93,6 +93,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseMiddleware<ValidarBearerMiddleWare>();
 
             app.UseHttpsRedirection();

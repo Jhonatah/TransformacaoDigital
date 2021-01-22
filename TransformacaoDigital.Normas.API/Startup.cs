@@ -117,7 +117,7 @@ namespace TransformacaoDigital.Normas.API
 
             app.UseHttpsRedirection();
 
-            app.UseMiddleware<ExceptionMeddleware>();
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseMiddleware<ValidarBearerMiddleWare>();
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.

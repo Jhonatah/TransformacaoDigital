@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace TransformacaoDigital.Filters.Middlewares
 {
-    public class ExceptionMeddleware
+    public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public ExceptionMeddleware(RequestDelegate next)
+        public ExceptionMiddleware(RequestDelegate next)
         {
             _next = next;
         }

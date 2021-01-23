@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransformacaoDigital.UI", "TransformacaoDigital.UI\TransformacaoDigital.UI.csproj", "{DF365EA0-E7A0-4573-9049-B27131121FAE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{D7FC7B89-377A-4E6E-87AA-FB6CCE9F34A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ConsultoriaAssessoria", "ConsultoriaAssessoria", "{878D22D8-19B2-47B0-AC2D-6C8A2E813540}"
@@ -48,10 +46,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DF365EA0-E7A0-4573-9049-B27131121FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF365EA0-E7A0-4573-9049-B27131121FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF365EA0-E7A0-4573-9049-B27131121FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF365EA0-E7A0-4573-9049-B27131121FAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8E341B9D-FFB9-4C96-8BD6-7DE26ECCBAC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8E341B9D-FFB9-4C96-8BD6-7DE26ECCBAC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E341B9D-FFB9-4C96-8BD6-7DE26ECCBAC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,7 +87,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{DF365EA0-E7A0-4573-9049-B27131121FAE} = {D7FC7B89-377A-4E6E-87AA-FB6CCE9F34A6}
 		{8E341B9D-FFB9-4C96-8BD6-7DE26ECCBAC3} = {878D22D8-19B2-47B0-AC2D-6C8A2E813540}
 		{0A403215-B444-4566-BE6D-0629A303E97B} = {F2C8C988-527F-450E-BBFA-6549B9E1F8DE}
 		{863F9BD4-5993-4DF5-96DB-57B2D29D3225} = {9E912D42-A3C8-4339-A26E-112101C81DCE}

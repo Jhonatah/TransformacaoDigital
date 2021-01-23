@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
+using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Text;
 using System.Threading.Tasks;
 using TransformacaoDigital.Autenticacao.API.Models;
 using TransformacaoDigital.Autenticacao.API.Repositorios;
@@ -34,7 +36,9 @@ namespace TransformacaoDigital.Autenticacao.API.Controllers
         {
             if (string.IsNullOrEmpty(token)) return BadRequest();
 
-            var stringDecriptada = Encriptador.Get().Decriptar(EncriptEnum.c7b70d19b7db400c84de2b570b49c1fd.GetName(), token);
+            var tokenBytes = Convert.FromBase64String(token);
+
+            var stringDecriptada = Encriptador.Get().Decriptar(EncriptEnum.c7b70d19b7db400c84de2b570b49c1fd.GetName(), Encoding.UTF8.GetString(tokenBytes));
 
             if (string.IsNullOrEmpty(stringDecriptada)) return BadRequest();
 

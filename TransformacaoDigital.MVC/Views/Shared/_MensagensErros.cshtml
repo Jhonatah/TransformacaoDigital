@@ -1,0 +1,24 @@
+﻿@{
+    @using TransformacaoDigital.MVC.Services.Implementacoes;
+
+    var mensagensTemp = TempData["MensagensDeErros"] as string;
+    List<Notificacao> mensagens = new List<Notificacao>();
+
+    if(string.IsNullOrEmpty(mensagensTemp) == false)
+    {
+        mensagens = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Notificacao>>(mensagensTemp);
+    }
+}
+
+<div>
+
+    @if (mensagens != null && mensagens.Count > 0)
+    {
+        foreach (var m in mensagens)
+        {
+            <div class="alert alert-danger" role="alert">
+                @m.Mensagem
+            </div>
+        }
+    }
+</div>

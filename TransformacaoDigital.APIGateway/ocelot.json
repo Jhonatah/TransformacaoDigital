@@ -9,7 +9,7 @@
           "Port": 61870
         }
       ],
-      "UpstreamPathTemplate": "/autenticacao/{everything}",
+      "UpstreamPathTemplate": "/autenticacao-api/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST" ]
     },
     {

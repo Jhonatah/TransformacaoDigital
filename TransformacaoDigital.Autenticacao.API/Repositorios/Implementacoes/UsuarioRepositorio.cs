@@ -13,7 +13,7 @@ namespace TransformacaoDigital.Autenticacao.API.Repositorios.Implementacoes
 
         public async Task<bool> AutenticarAsync(string email, string senha)
         {
-            return await Contexto.Usuarios.AnyAsync(x => x.Email == email && x.Senha == senha);
+            return await Contexto.Usuarios.AnyAsync(x => x.Email == email && x.Senha == senha && x.Ativo == true);
         }
 
         public async Task CadastrarAsync(Usuario usuario)

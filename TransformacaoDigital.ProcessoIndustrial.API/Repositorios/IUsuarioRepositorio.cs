@@ -12,9 +12,11 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Repositorios
         Task CadastrarAsync(Usuario model);
         Task AlterarAsync(Usuario model);
         Task<Usuario> LerPorIdAsync(Guid usuarioId);
+        Task<object> LerPorIdDtoAsync(Guid usuarioId);
 
 
         Task<object> ListarTipoUsuariosAsync();
         Task<object> ListarPerfisAsync();
+        Task<bool> EmailExisteAsync(string email);
     }
 }

@@ -44,6 +44,20 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Models
             }
         }
 
+        internal void SetTipoUsuario(byte tipoUsuarioId)
+        {
+            TipoUsuarioId = tipoUsuarioId;
+        }
+
+        internal string SetSenhaProvisoria()
+        {
+            var senhaProvisoria = Guid.NewGuid().ToString().Split("-")[0].ToUpper();
+
+            SetSenha(senhaProvisoria);
+
+            return senhaProvisoria;
+        }
+
         public void SetSenha(string senha)
         {
             SetSalt();
@@ -62,6 +76,12 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Models
         {
             DataAlteracao = DateTime.Now;
             PerfilId = perfilId;
+        }
+
+        internal void Ativar()
+        {
+            Ativo = true;
+            DataAlteracao = DateTime.Now;
         }
     }
 }

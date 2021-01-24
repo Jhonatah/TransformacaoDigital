@@ -7,7 +7,8 @@ namespace TransformacaoDigital.Mensageria
         ConsultoriasAssessorias,
         Normas,
         ProcessosInternos,
-        IntegracaoERPProcessosInternos
+        IntegracaoERPProcessosInternos,
+        EnviarEmail
     }
 
     public static class EnumExtension

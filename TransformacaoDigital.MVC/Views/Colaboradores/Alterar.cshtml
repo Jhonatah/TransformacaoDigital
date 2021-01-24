@@ -1,0 +1,47 @@
+﻿@model TransformacaoDigital.MVC.ViewModels.AlterarColaboradorViewModel
+
+@{
+    ViewData["Title"] = "Alterar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Alterar Informações de @Model.Nome</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Alterar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" class="form-control" type="hidden" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PerfilId" class="control-label"></label>
+                <select asp-for="PerfilId" asp-items="Model.Perfis" class="form-control"></select>
+                <span asp-validation-for="PerfilId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoUsuarioId" class="control-label"></label>
+                <select asp-for="TipoUsuarioId" asp-items="Model.TiposUsuarios" class="form-control"></select>
+                <span asp-validation-for="TipoUsuarioId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" disabled="disabled" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

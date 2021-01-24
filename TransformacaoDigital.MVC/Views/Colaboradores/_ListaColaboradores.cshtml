@@ -1,0 +1,52 @@
+﻿@using TransformacaoDigital.MVC.Services.Dtos
+@using TransformacaoDigital.MVC.Services.Dtos.ProcessosIndustriaisDto
+@model Paginador<ColaboradorDto>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Perfil</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Ativo</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Registros.Any())
+            {
+                foreach (var c in Model.Registros)
+                {
+                    <tr class="registro-colaborador-estilo">
+                        <td class="registro-colaborador" data-id-colaborador="@c.Id">@c.Nome</td>
+                        <td class="registro-colaborador" data-id-colaborador="@c.Id">@c.Email</td>
+                        <td class="registro-colaborador" data-id-colaborador="@c.Id">@c.Perfil.Nome</td>
+                        <td class="registro-colaborador" data-id-colaborador="@c.Id">@c.TipoUsuario.Nome</td>
+                        <td class="registro-colaborador" data-id-colaborador="@c.Id">@(c.Ativo ? "Sim" : "Não")</td>
+
+                        @if(c.Ativo)
+                        {
+                            <td class="desativar-colaborador" data-id-colaborador="@c.Id">
+                                <button class="btn btn-danger">Desativar</button>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="reativar-colaborador" data-id-colaborador="@c.Id">
+                                <button class="btn btn-success">Reativar</button>
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">Nenhum registro encontrado</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

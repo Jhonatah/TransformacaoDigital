@@ -20,7 +20,7 @@ namespace TransformacaoDigital.MVC.Services.Implementacoes
 
             var tokenBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(token));
 
-            var response = await PostAsync<TokenDto>(string.Concat(RotasAPI.AutentucacaoUsuario, $"?token={tokenBase64}"), null);
+            var response = await PostAsync<TokenDto>(string.Concat(RotasAPI.Autenticacao_Usuario, $"?token={tokenBase64}"), null);
 
             if (response.Sucesso == false)
             {

@@ -9,6 +9,7 @@ namespace TransformacaoDigital.MVC.Configuracoes
         public static void SetIocServices(this IServiceCollection services)
         {
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
+            services.AddScoped<IColaboradorService, ColaboradorService>();
             services.AddScoped<INotificacaoService, NotificacaoService>();
             services.AddScoped<IServicosHttpBase, ServicosHttpBase>();
             services.AddScoped<IUsuarioService, UsuarioService>();

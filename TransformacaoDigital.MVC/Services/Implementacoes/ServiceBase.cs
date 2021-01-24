@@ -70,6 +70,20 @@ namespace TransformacaoDigital.MVC.Services.Implementacoes
             }
         }
 
+        public virtual async Task<ResponseBase<object>> PostAsync(string url, object data)
+        {
+            try
+            {
+                var result = await ServicosBase.HttpClient.PostAsync(url, GetStringContent(data));
+                return await RecuperarResponse<object>(result);
+            }
+            catch (Exception ex)
+            {
+                ServicosBase.NotificacaoService.NotificarErro(ex);
+                return ErroResponse<object>();
+            }
+        }
+
         public virtual async Task<ResponseBase<T>> PutAsync<T>(string url, object data)
         {
             try
@@ -84,17 +98,30 @@ namespace TransformacaoDigital.MVC.Services.Implementacoes
             }
         }
 
-        public virtual async Task<ResponseBase<T>> DeleteAsync<T>(string url)
+        public virtual async Task<ResponseBase<object>> PutAsync(string url, object data)
         {
             try
             {
-                var result = await ServicosBase.HttpClient.DeleteAsync(url);
-                return await RecuperarResponse<T>(result);
+                var result = await ServicosBase.HttpClient.PutAsync(url, GetStringContent(data));
+                return await RecuperarResponse<object>(result);
             }
             catch (Exception ex)
             {
                 ServicosBase.NotificacaoService.NotificarErro(ex);
-                return ErroResponse<T>();
+                return ErroResponse<object>();
+            }
+        }
+        public virtual async Task<ResponseBase<object>> DeleteAsync(string url)
+        {
+            try
+            {
+                var result = await ServicosBase.HttpClient.DeleteAsync(url);
+                return await RecuperarResponse<object>(result);
+            }
+            catch (Exception ex)
+            {
+                ServicosBase.NotificacaoService.NotificarErro(ex);
+                return ErroResponse<object>();
             }
         }
 

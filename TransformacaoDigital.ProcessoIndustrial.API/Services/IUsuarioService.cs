@@ -10,9 +10,12 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Services
         Task CadastrarAsync(NovoUsuarioViewModel viewModel);
         Task AlterarAsync(Guid usuarioId, UsuarioViewModel viewModel);
         Task DesativarAsync(Guid usuarioId);
+        Task<object> LerPorIdAsync(Guid id);
 
         Task<Paginador<object>> ListarAsync(int pagina = 1, int registrosPorPagina = 10);
         Task<object> ListarTipoUsuariosAsync();
         Task<object> ListarPerfisAsync();
+        Task<bool> EmailExisteAsync(string email);
+        Task ReativarAsync(Guid id);
     }
 }

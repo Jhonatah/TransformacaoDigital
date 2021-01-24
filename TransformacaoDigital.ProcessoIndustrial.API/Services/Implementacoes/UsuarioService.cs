@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using TransformacaoDigital.Mensageria.Dto;
+using TransformacaoDigital.Mensageria.Services;
 using TransformacaoDigital.ProcessoIndustrial.API.Dtos;
 using TransformacaoDigital.ProcessoIndustrial.API.Models;
 using TransformacaoDigital.ProcessoIndustrial.API.Repositorios;
@@ -10,12 +12,19 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Services.Implementacoes
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioRepositorio _usuarioRepositorio;
+        private readonly ISenderService senderService;
 
-        public UsuarioService(IUsuarioRepositorio usuarioRepositorio)
+        public UsuarioService(IUsuarioRepositorio usuarioRepositorio,
+            ISenderService senderService)
         {
+            this.senderService = senderService;
             _usuarioRepositorio = usuarioRepositorio;
         }
 
+        public async Task<object> LerPorIdAsync(Guid id)
+        {
+            return await _usuarioRepositorio.LerPorIdDtoAsync(id);
+        }
         public async Task AlterarAsync(Guid usuarioId, UsuarioViewModel viewModel)
         {
             var model = await _usuarioRepositorio.LerPorIdAsync(usuarioId);
@@ -24,6 +33,7 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Services.Implementacoes
 
             model.Nome = viewModel.Nome;
             model.SetPerfil(viewModel.PerfilId);
+            model.SetTipoUsuario(viewModel.TipoUsuarioId);
             
             await _usuarioRepositorio.AlterarAsync(model);
         }
@@ -33,11 +43,20 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Services.Implementacoes
             var model = new Usuario(
                 viewModel.Nome,
                 viewModel.Email,
-                viewModel.Senha,
+                string.Empty,
                 viewModel.PerfilId,
                 viewModel.TipoUsuarioId);
 
+            var senhaProveisoria = model.SetSenhaProvisoria();
+
             await _usuarioRepositorio.CadastrarAsync(model);
+
+            senderService.Send(Mensageria.QueueEnum.EnviarEmail, new EmailDto
+            {
+                Assunto = "Senha Temporaria",
+                Mensagem = $"Prezado {model.Nome}, utilize a senha temporária <b>{senhaProveisoria}</b> para acessar o sistema. <br /> Atenciosamente, <br /> Equipe Textil",
+                Destinatarios = model.Email
+            });
         }
 
         public async Task DesativarAsync(Guid usuarioId)
@@ -63,6 +82,22 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Services.Implementacoes
         public async Task<object> ListarPerfisAsync()
         {
             return await _usuarioRepositorio.ListarPerfisAsync();
+        }
+
+        public async Task<bool> EmailExisteAsync(string email)
+        {
+            return await _usuarioRepositorio.EmailExisteAsync(email);
+        }
+
+        public async Task ReativarAsync(Guid id)
+        {
+            var model = await _usuarioRepositorio.LerPorIdAsync(id);
+
+            if (model == null) return;
+
+            model.Ativar();
+
+            await _usuarioRepositorio.AlterarAsync(model);
         }
     }
 }

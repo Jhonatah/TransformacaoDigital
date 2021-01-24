@@ -34,15 +34,16 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Repositorios.Implementacoe
                     {
                         x.Id,
                         x.Nome,
+                        x.Email,
                         x.Ativo,
                         TipoUsuario = new
                         {
-                            x.TipoUsuario.Id,
+                            Id = x.TipoUsuario.Id,
                             x.TipoUsuario.Nome
                         },
                         Perfil = new
                         {
-                            x.PerfilId,
+                            Id = x.PerfilId,
                             x.Perfil.Nome
                         }
                     })
@@ -54,6 +55,29 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Repositorios.Implementacoe
             var total = await Contexto.Usuarios.Select(x => x.Id).CountAsync();
 
             return new Paginador<object>(resultado, pagina, total, registrosPorPagina);
+        }
+
+        public async Task<object> LerPorIdDtoAsync(Guid usuarioId)
+        {
+            return await Contexto.Usuarios
+                    .Select(x => new
+                    {
+                        x.Id,
+                        x.Nome,
+                        x.Email,
+                        x.Ativo,
+                        TipoUsuario = new
+                        {
+                            Id = x.TipoUsuario.Id,
+                            x.TipoUsuario.Nome
+                        },
+                        Perfil = new
+                        {
+                            Id = x.PerfilId,
+                            x.Perfil.Nome
+                        }
+                    })
+                    .FirstOrDefaultAsync(x => x.Id == usuarioId);
         }
 
         public async Task<Usuario> LerPorIdAsync(Guid usuarioId)
@@ -79,6 +103,11 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Repositorios.Implementacoe
                     s.Id,
                     s.Nome
                 }).OrderBy(x => x.Nome).ToListAsync();
+        }
+
+        public async Task<bool> EmailExisteAsync(string email)
+        {
+            return await Contexto.Usuarios.AnyAsync(x => x.Email == email);
         }
     }
 }

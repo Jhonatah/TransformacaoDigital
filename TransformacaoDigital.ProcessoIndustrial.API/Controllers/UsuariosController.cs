@@ -21,7 +21,21 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Controllers
         [Route("{pagina:int}")]
         public async Task<IActionResult> ListarUsuarios(int pagina = 1)
         {
-            return Ok(await _usuarioService.ListarAsync(pagina));
+            return Ok(await _usuarioService.ListarAsync(pagina, 50));
+        }
+
+        [HttpGet]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> LerUsuarioPorId(Guid id)
+        {
+            return Ok(await _usuarioService.LerPorIdAsync(id));
+        }
+
+        [HttpGet]
+        [Route("emailexiste/{email}")]
+        public async Task<IActionResult> EmailUsuarioExiste(string email)
+        {
+            return Ok(await _usuarioService.EmailExisteAsync(email));
         }
 
         [HttpPost]
@@ -62,6 +76,21 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Controllers
             }
 
             await _usuarioService.DesativarAsync(id);
+
+            return Ok();
+        }
+
+
+        [HttpPut]
+        [Route("{id:guid}/reativar")]
+        public async Task<IActionResult> ReativarUsuario(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                return BadRequest();
+            }
+
+            await _usuarioService.ReativarAsync(id);
 
             return Ok();
         }

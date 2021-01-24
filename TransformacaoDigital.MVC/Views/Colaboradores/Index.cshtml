@@ -1,0 +1,87 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h3>Lista de Colaboradores</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 ">
+
+        <a class="btn btn-success" asp-area="" asp-action="Novo">Cadastrar Colaborador</a>
+        <button class="btn btn-primary float-right" id="btn-listar-colaboradores">Listar Colaboradores</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" style="padding-top: 30px">
+        <div class="listagem-colaboradores">
+            <div id="lista-colaboradores">Carregando...</div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            listarColaboradores(1);
+
+            $(document).on("click", "#btn-listar-colaboradores", function () {
+                listarColaboradores(1);
+            });
+
+            $(document).on("click", ".registro-colaborador", function () {
+                let id = $(this).data("id-colaborador");
+                window.location.href = "/Colaboradores/Alterar/" + id;
+            });
+
+            $(document).on("click", ".desativar-colaborador", function () {
+                let id = $(this).data("id-colaborador");
+
+
+                $.ajax({
+                    method: "DELETE",
+                    url: "/colaboradores/DesativarConta",
+                    data: { id: id }
+                })
+                    .done(function (response) {
+                        listarColaboradores(1);
+                    });
+            });
+
+            $(document).on("click", ".reativar-colaborador", function () {
+                let id = $(this).data("id-colaborador");
+
+
+                $.ajax({
+                    method: "POST",
+                    url: "/colaboradores/ReativarConta",
+                    data: { id: id }
+                })
+                    .done(function (response) {
+                        listarColaboradores(1);
+                    });
+            });
+        });
+
+        function listarColaboradores(pagina) {
+            $.ajax({
+                method: "GET",
+                url: "/colaboradores/ListaColaboradores",
+                data: { pagina: pagina },
+                beforeSend: function () {
+                    $("#resultado").html("Pesquisando...");
+                }
+            })
+                .done(function (response) {
+                    $("#lista-colaboradores").html(response);
+                });
+        }
+    </script>
+} 
+
+<style>
+    .registro-colaborador-estilo:hover {
+        background-color: #808080;
+        cursor: pointer;
+    }
+</style>

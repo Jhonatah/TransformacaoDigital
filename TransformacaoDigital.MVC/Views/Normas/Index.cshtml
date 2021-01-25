@@ -1,0 +1,59 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <h3>Lista de Normas</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 ">
+
+        <a class="btn btn-success" asp-action="Novo">Cadastrar Norma</a>
+        <button class="btn btn-primary float-right" id="btn-listar-normas">Listar Normas</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" style="padding-top: 30px">
+        <div class="listagem-normas">
+            <div id="lista-normas">Carregando...</div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            listarNormas(1);
+
+            $(document).on("click", "#btn-listar-normas", function () {
+                listarNormas(1);
+            });
+
+            $(document).on("click", ".registro-norma", function () {
+                let id = $(this).data("id-norma");
+                window.location.href = "/Normas/Alterar/" + id;
+            });
+        });
+
+        function listarNormas(pagina) {
+            $.ajax({
+                method: "GET",
+                url: "/normas/ListaNormas",
+                data: { pagina: pagina },
+                beforeSend: function () {
+                    $("#resultado").html("Pesquisando...");
+                }
+            })
+                .done(function (response) {
+                    $("#lista-normas").html(response);
+                });
+        }
+    </script>
+}
+
+<style>
+    .registro-norma-estilo:hover {
+        background-color: #808080;
+        cursor: pointer;
+    }
+</style>

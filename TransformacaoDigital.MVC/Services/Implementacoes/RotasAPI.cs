@@ -12,5 +12,9 @@
 
         public const string ProcessosIndustriais_TiposColaboradores = "processosindustriais-api/tipousuarios";
         public const string ProcessosIndustriais_Perfis = "processosindustriais-api/perfis";
+
+        public const string Normas = "normas-api/normas";
+        public const string Normas_PorId = "normas-api/normas/{0}";
+        public const string Normas_Tipos = "normas-api/tiponormas";
     }
 }

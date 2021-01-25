@@ -1,0 +1,32 @@
+﻿@using TransformacaoDigital.MVC.Services.Dtos
+@using TransformacaoDigital.MVC.Services.Dtos.NormasDto
+@model Paginador<NormaDto>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Data de Cadastro</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Registros.Any())
+            {
+                foreach (var c in Model.Registros)
+                {
+                    <tr class="registro-norma-estilo">
+                        <td class="registro-norma" data-id-norma="@c.Id">@c.Nome</td>
+                        <td class="registro-norma" data-id-norma="@c.Id">@c.DataCadastro.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="2">Nenhum registro encontrado</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

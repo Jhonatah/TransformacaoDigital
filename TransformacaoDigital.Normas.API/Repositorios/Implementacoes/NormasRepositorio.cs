@@ -40,7 +40,19 @@ namespace TransformacaoDigital.Normas.API.Repositorios.Implementacoes
 
         public async Task<object> LerPorIdAsync(Guid id)
         {
-            return await Contexto.Normas.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await Contexto.Normas
+                .Select(x => new 
+                { 
+                    x.Id,
+                    x.Nome,
+                    x.Descricao,
+                    TipoNorma = new
+                    {
+                        x.TipoNorma.Id,
+                        x.TipoNorma.Nome
+                    }
+                })
+                .AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Paginador<object>> ListarAsync(int pagina)

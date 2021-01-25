@@ -23,10 +23,10 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            listarColaboradores(1);
+            listarNormas(1);
 
             $(document).on("click", "#btn-listar-colaboradores", function () {
-                listarColaboradores(1);
+                listarNormas(1);
             });
 
             $(document).on("click", ".registro-colaborador", function () {
@@ -44,7 +44,7 @@
                     data: { id: id }
                 })
                     .done(function (response) {
-                        listarColaboradores(1);
+                        listarNormas(1);
                     });
             });
 
@@ -58,12 +58,12 @@
                     data: { id: id }
                 })
                     .done(function (response) {
-                        listarColaboradores(1);
+                        listarNormas(1);
                     });
             });
         });
 
-        function listarColaboradores(pagina) {
+        function listarNormas(pagina) {
             $.ajax({
                 method: "GET",
                 url: "/colaboradores/ListaColaboradores",

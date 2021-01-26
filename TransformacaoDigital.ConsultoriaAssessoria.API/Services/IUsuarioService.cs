@@ -15,7 +15,9 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Services
     {
         public Guid GerUserId(string token)
         {
-            var handler = new JwtSecurityToken(token);
+            if (string.IsNullOrEmpty(token)) return Guid.Empty;
+
+            var handler = new JwtSecurityToken(token.Replace("Bearer", "").Trim());
 
             var claim = handler.Claims.GetClaim(JwtRegisteredClaimNames.Jti);
 

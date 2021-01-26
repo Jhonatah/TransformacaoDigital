@@ -69,7 +69,6 @@ namespace TransformacaoDigital.MVC.Services.Implementacoes
                 return ErroResponse<T>();
             }
         }
-
         public virtual async Task<ResponseBase<object>> PostAsync(string url, object data)
         {
             try
@@ -97,7 +96,6 @@ namespace TransformacaoDigital.MVC.Services.Implementacoes
                 return ErroResponse<T>();
             }
         }
-
         public virtual async Task<ResponseBase<object>> PutAsync(string url, object data)
         {
             try
@@ -111,6 +109,7 @@ namespace TransformacaoDigital.MVC.Services.Implementacoes
                 return ErroResponse<object>();
             }
         }
+
         public virtual async Task<ResponseBase<object>> DeleteAsync(string url)
         {
             try

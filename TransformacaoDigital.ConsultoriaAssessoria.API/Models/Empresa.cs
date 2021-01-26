@@ -15,7 +15,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Models
         {
             UsuarioId = usuarioId;
             TipoEmpresaId = tipoEmpresaId;
-            CNPJ = cNPJ;
+            CNPJ = cNPJ.Replace(".", "").Replace("-", "").Replace("/", "");
             RazaoSocial = razaoSocial;
             NomeFantasia = nomeFantasia;
             Email = email;

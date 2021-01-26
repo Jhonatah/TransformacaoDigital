@@ -79,9 +79,9 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
 
                 await _empresaRepositorio.AlterarAsync(id,
                     new Models.Empresa(
-                        Guid.NewGuid(),
+                        UsuarioId,
                         viewModel.TipoEmpresaId,
-                        viewModel.CNPJ,
+                        viewModel.CNPJ.Replace(".", "").Replace("-", "").Replace("/", ""),
                         viewModel.RazaoSocial,
                         viewModel.NomeFantasia,
                         viewModel.Email));

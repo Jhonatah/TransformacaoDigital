@@ -37,7 +37,20 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementa
         public async Task<object> LerPorIdAsync(Guid id)
         {
             return await
-                Contexto.Contratos.FirstOrDefaultAsync(x => x.Id == id);
+                Contexto.Empresas.Select(x => new
+                {
+                    x.Id,
+                    x.NomeFantasia,
+                    x.RazaoSocial,
+                    x.CNPJ,
+                    x.Email,
+                    x.DataCadastro,
+                    TipoEmpresa = new
+                    {
+                        x.TipoEmpresa.Id,
+                        x.TipoEmpresa.Nome
+                    }
+                }).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Paginador<object>> ListarAsync(int pagina)
@@ -47,6 +60,19 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Repositorios.Implementa
 
             var registros =
                 await Contexto.Empresas.AsNoTracking()
+                .Select(x => new 
+                { 
+                    x.Id,
+                    x.NomeFantasia,
+                    x.RazaoSocial,
+                    x.CNPJ,
+                    x.DataCadastro,
+                    TipoEmpresa = new
+                    {
+                        x.TipoEmpresa.Id,
+                        x.TipoEmpresa.Nome
+                    }
+                })
                 .OrderByDescending(x => x.DataCadastro)
                 .Skip(skip)
                 .Take(take)

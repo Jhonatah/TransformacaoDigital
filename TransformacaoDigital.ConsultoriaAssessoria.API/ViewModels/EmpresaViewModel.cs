@@ -13,7 +13,6 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.ViewModels
         [Required]
         public string NomeFantasia { get; set; }
 
-        [Required]
         public string CNPJ { get; set; }
 
         [Required]

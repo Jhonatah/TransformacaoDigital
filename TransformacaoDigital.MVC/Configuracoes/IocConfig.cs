@@ -10,6 +10,7 @@ namespace TransformacaoDigital.MVC.Configuracoes
         {
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddScoped<IColaboradorService, ColaboradorService>();
+            services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<INormaService, NormaService>();
             services.AddScoped<INotificacaoService, NotificacaoService>();
             services.AddScoped<IServicosHttpBase, ServicosHttpBase>();

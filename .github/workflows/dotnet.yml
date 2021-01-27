@@ -37,4 +37,4 @@ jobs:
         password: ${{ secrets.FTP_SENHA }}
         localDir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/"
         remoteDir: "/"
-        forceSsl: true
+        forceSsl: false

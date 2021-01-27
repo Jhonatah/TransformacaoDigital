@@ -32,7 +32,7 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       env:
-        FTP_SERVER: ftp.site4now.net
+        FTP_SERVER: ftp://ftp.site4now.net
         FTP_USERNAME: lucasjhonatah
         FTP_PASSWORD: ${{ secrets.FTP_SENHA }}
         LOCAL_DIR: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/

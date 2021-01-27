@@ -26,9 +26,12 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
-    - name: Sync FTP
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+    - name: FTP
+      uses: airvzxf/ftp-deployment-action@latest
       with:
         server: ${{ secrets.FTP_PUBLICACAO }}
-        username: ${{ secrets.FTP_USUARIO }}
+        user: ${{ secrets.FTP_USUARIO }}
         password: ${{ secrets.FTP_SENHA }}
+        local_dir: ./
+        delete: true
+        ftp_ssl_allow: true

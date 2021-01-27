@@ -58,11 +58,6 @@ namespace TransformacaoDigital.APIGateway
                 app.UseDeveloperExceptionPage();
             }
 
-            app
-                .UseAuthentication()
-                .UseOcelot()
-                .Wait();
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -76,6 +71,10 @@ namespace TransformacaoDigital.APIGateway
                     await request.Response.WriteAsync("it's works");
                 });
             });
+
+            await app
+                .UseAuthentication()
+                .UseOcelot();
         }
     }
 }

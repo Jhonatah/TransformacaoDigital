@@ -23,7 +23,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
-      run: dotnet publish TransformacaoDigital.sln --configuration Release --output ./publish --runtime win-x86 --self-contained true 
+      run: dotnet publish TransformacaoDigital/TransformacaoDigital.MVC/TransformacaoDigital.MVC.csproj --configuration Release --output ./publish --runtime win-x86 --self-contained true 
     #- name: FTP
       #uses: airvzxf/ftp-deployment-action@latest
       #with:

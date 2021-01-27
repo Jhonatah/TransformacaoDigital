@@ -59,5 +59,4 @@ jobs:
         dangerous-clean-slate: true
         # An array of glob patterns, these files will not be included in the publish/delete process
         #exclude: # optional
-        # How verbose should the information be - warn, info, debug
-        log-level: info
+        log-level: verbose

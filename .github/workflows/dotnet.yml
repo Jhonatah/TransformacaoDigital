@@ -58,3 +58,18 @@ jobs:
         # An array of glob patterns, these files will not be included in the publish/delete process
         #exclude: # optional
         log-level: verbose
+    - name: FTP 2
+      uses: sebastianpopp/ftp-action@v2.0.0
+      with:
+        # FTP host
+        host: ${{ secrets.FTP_PUBLICACAO }}
+        # FTP user
+        user: ${{ secrets.FTP_USUARIO }}
+        # FTP password
+        password: ${{ secrets.FTP_SENHA }}
+        # Force SSL encryption
+        forceSsl: true
+        # Local directory
+        localDir: ./home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
+        # Remote directory
+        remoteDir: ./

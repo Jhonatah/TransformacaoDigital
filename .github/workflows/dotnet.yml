@@ -24,7 +24,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
       run: dotnet publish **/TransformacaoDigital.MVC.csproj --configuration Release --output ./publish --runtime win-x86 --self-contained true 
-    #- name: FTP
+    - name: FTP
       #uses: airvzxf/ftp-deployment-action@latest
       #with:
         #server: ${{ secrets.FTP_PUBLICACAO }}
@@ -33,22 +33,22 @@ jobs:
         #local_dir: ./
         #delete: true
         #ftp_ssl_allow: true
-     # uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      #with:
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
         # ftp server
-        #server: ${{ secrets.FTP_PUBLICACAO }}
+        server: ${{ secrets.FTP_PUBLICACAO }}
         # ftp username
-       # username: ${{ secrets.FTP_USUARIO }}
+        username: ${{ secrets.FTP_USUARIO }}
         # ftp password
-        #password: ${{ secrets.FTP_SENHA }}
+        password: ${{ secrets.FTP_SENHA }}
         # Server port to connect to (read your web hosts docs)
-        #port: 21
+        port: 21
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         #protocol: ftp
         # Folder to upload from, must end with trailing slash /
-        #local-dir: /
+        local-dir: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
         # Path to upload to on the server. Must end with trailing slash /
-        #server-dir: /TransformacaoDigital
+        server-dir: /
         # Path and name of the state file - this file is used to track which files have been deployed
         #state-name: # optional
         # Prints which modifications will be made with current config options, but doesnt actually make any changes
@@ -57,4 +57,4 @@ jobs:
         #dangerous-clean-slate: true
         # An array of glob patterns, these files will not be included in the publish/delete process
         #exclude: # optional
-        #log-level: verbose
+        log-level: verbose

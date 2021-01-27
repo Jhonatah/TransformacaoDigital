@@ -29,6 +29,6 @@ jobs:
     - name: Sync FTP
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
-        server: FTP_URL
-        username: FTP_USUARIO
-        password: FTP_SENHA
+        server: ${{ secrets.FTP_PUBLICACAO }}
+        username: ${{ secrets.FTP_USUARIO }}
+        password: ${{ secrets.FTP_SENHA }}

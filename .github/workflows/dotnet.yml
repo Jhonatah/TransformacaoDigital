@@ -5,10 +5,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-env:
-  FTP_URL: ${{ secrets.FTP_PUBLICACAO }}
-  FTP_USUARIO: ${{ secrets.FTP_USUARIO }}
-  FTP_SENHA: ${{ secrets.FTP_SENHA }}
 jobs:
   build-and-deploy:
 
@@ -26,6 +22,8 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Arquivos Para Publicacao
+      run: dotnet publish TransformacaoDigital.sln --configuration Release -output ./publish --runtime win-x86 --self-contained true 
     - name: FTP
       #uses: airvzxf/ftp-deployment-action@latest
       #with:

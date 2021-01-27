@@ -5,15 +5,18 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
+env:
+  FTP_URL: ${{ secrets.FTP_PUBLICACAO }}
+  FTP_USUARIO: ${{ secrets.FTP_USUARIO }}
+  FTP_SENHA: ${{ secrets.FTP_SENHA }}
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+    - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
@@ -23,3 +26,9 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Sync FTP
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: FTP_URL
+        username: FTP_USUARIO
+        password: FTP_SENHA

@@ -24,6 +24,12 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
       run: dotnet publish **/TransformacaoDigital.MVC.csproj --configuration Release --output ./publish --runtime win-x86 --self-contained true 
+    - name: Upload WebApp1 Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Projeto_MVC
+        path: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
+    
     #- name: FTP
       #uses: airvzxf/ftp-deployment-action@latest
       #with:
@@ -58,18 +64,3 @@ jobs:
         # An array of glob patterns, these files will not be included in the publish/delete process
         #exclude: # optional
         #log-level: verbose
-    - name: FTP 2
-      uses: sebastianpopp/ftp-action@v2.0.0
-      with:
-        # FTP host
-        host: ${{ secrets.FTP_PUBLICACAO }}
-        # FTP user
-        user: ${{ secrets.FTP_USUARIO }}
-        # FTP password
-        password: ${{ secrets.FTP_SENHA }}
-        # Force SSL encryption
-        forceSsl: true
-        # Local directory
-        localDir: ./home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
-        # Remote directory
-        remoteDir: ./

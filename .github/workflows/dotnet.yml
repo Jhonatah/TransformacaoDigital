@@ -65,4 +65,4 @@ jobs:
         # How verbose should the information be - warn, info, debug
         log-level: info
         # strict or loose
-        security: strict
+        #security: strict

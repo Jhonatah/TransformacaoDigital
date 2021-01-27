@@ -41,11 +41,11 @@ jobs:
         # ftp password
         password: ${{ secrets.FTP_SENHA }}
         # Server port to connect to (read your web hosts docs)
-        port: 22
+        #port: 22
         # protocol to deploy with - ftp, ftps, or ftps-legacy
         #protocol: # optional
         # Folder to upload from, must end with trailing slash /
-        local-dir: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
+        #local-dir: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
         # Path to upload to on the server. Must end with trailing slash /
         #server-dir: # optional
         # Path and name of the state file - this file is used to track which files have been deployed
@@ -59,4 +59,4 @@ jobs:
         # How verbose should the information be - warn, info, debug
         log-level: verbose
         # strict or loose
-        security: strict
+        #security: strict

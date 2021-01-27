@@ -1,0 +1,40 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    #- name: Restore dependencies
+    #  run: dotnet restore
+    #- name: Build
+    #  run: dotnet build --no-restore
+    #- name: Test
+    #  run: dotnet test --no-build --verbosity normal
+    - name: Arquivos Para Publicacao
+      run: dotnet publish **/TransformacaoDigital.MVC.csproj --configuration Release --output ./publish --runtime win-x86 --self-contained true 
+    #- name: Upload WebApp1 Build Artifact
+    #  uses: actions/upload-artifact@v2
+    #  with:
+   #     name: Projeto_MVC
+   #     path: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
+    - name: Upload ftp
+      uses: sebastianpopp/ftp-action@releases/v2
+      with:
+        host: ftp.site4now.net
+        user: lucasjhonatah
+        password: ${{ secrets.FTP_SENHA }}
+        localDir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/"
+        remoteDir: "/"
+        forceSsl: true

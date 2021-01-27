@@ -29,7 +29,14 @@ jobs:
       with:
         name: Projeto_MVC
         path: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
-    
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@latest
+      env:
+        FTP_SERVER: ftp.site4now.net
+        FTP_USERNAME: lucasjhonatah
+        FTP_PASSWORD: ${{ secrets.FTP_SENHA }}
+        LOCAL_DIR: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
+        ARGS: --delete
     #- name: FTP
       #uses: airvzxf/ftp-deployment-action@latest
       #with:

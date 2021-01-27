@@ -40,5 +40,5 @@ jobs:
         server: ${{ secrets.FTP_PUBLICACAO }}
         username: ${{ secrets.FTP_USUARIO }}
         password: ${{ secrets.FTP_SENHA }}
-        protocol: ftps
+        #protocol: ftps
         dangerous-clean-slate: true

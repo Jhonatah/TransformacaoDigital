@@ -27,11 +27,18 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: FTP
-      uses: airvzxf/ftp-deployment-action@latest
+      #uses: airvzxf/ftp-deployment-action@latest
+      #with:
+        #server: ${{ secrets.FTP_PUBLICACAO }}
+        #user: ${{ secrets.FTP_USUARIO }}
+        #password: ${{ secrets.FTP_SENHA }}
+        #local_dir: ./
+        #delete: true
+        #ftp_ssl_allow: true
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ${{ secrets.FTP_PUBLICACAO }}
-        user: ${{ secrets.FTP_USUARIO }}
+        username: ${{ secrets.FTP_USUARIO }}
         password: ${{ secrets.FTP_SENHA }}
-        local_dir: ./
-        delete: true
-        ftp_ssl_allow: true
+        protocol: ftps
+        dangerous-clean-slate: true

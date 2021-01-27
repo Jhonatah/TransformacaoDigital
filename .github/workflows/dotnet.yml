@@ -30,7 +30,7 @@ jobs:
         name: Projeto_MVC
         path: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
     - name: FTP-Deploy-Action
-      uses: SamKirkland/FTP-Deploy-Action@latest
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
       env:
         FTP_SERVER: ftp.site4now.net
         FTP_USERNAME: lucasjhonatah

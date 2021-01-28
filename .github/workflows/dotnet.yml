@@ -41,7 +41,7 @@ jobs:
         # FTP Password.
         password: ${{ secrets.FTP_SENHA }}
         # Local directory.
-        local_dir: "./home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/"
+        local_dir: "./home/runner/work/TransformacaoDigital/TransformacaoDigital/publish"
         # Remote directory.
         remote_dir: "./"
         # Delete all the files inside of the remote directory.

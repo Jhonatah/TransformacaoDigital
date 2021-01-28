@@ -51,7 +51,7 @@ jobs:
         # Do not create symbolic links.
         # no_symlinks: # optional, default is true
         # FTP - Allow SSL encryption.
-        # ftp_ssl_allow: # optional, default is false
+        ftp_ssl_allow: true # optional, default is false
         # FTP - FEAT: Determining what extended features the FTP server supports.
         # ftp_use_feat: # optional, default is false
         # FTP - Delay in seconds between NOOP commands when downloading tail of a file.

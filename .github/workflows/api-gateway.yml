@@ -24,12 +24,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
       run: dotnet publish **/TransformacaoDigital.APIGateway.csproj --configuration Production --output ./publish-APIGateway --runtime win-x86 --self-contained true 
-    #- name: Upload WebApp1 Build Artifact
-    #  uses: actions/upload-artifact@v2
-    #  with:
-   #     name: Projeto_MVC
-   #     path: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish-APIGateway/
-    - name: Arquivos Para Publicacao
+    - name: Publicação FTP
       uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
         ftp_host: ftp.site4now.net

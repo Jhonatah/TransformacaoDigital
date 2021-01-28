@@ -45,13 +45,13 @@ jobs:
         # Remote directory.
         # remote_dir: "./"
         # Delete all the files inside of the remote directory.
-        delete: true
+        # delete: true
         # Times that the lftp will be executed if an error occurred.
-        max_retries: 2
+        # max_retries: 2
         # Do not create symbolic links.
         # no_symlinks: # optional, default is true
         # FTP - Allow SSL encryption.
-        ftp_ssl_allow: true # optional, default is false
+        # ftp_ssl_allow: true # optional, default is false
         # FTP - FEAT: Determining what extended features the FTP server supports.
         # ftp_use_feat: # optional, default is false
         # FTP - Delay in seconds between NOOP commands when downloading tail of a file.
@@ -59,13 +59,13 @@ jobs:
         # NET - Maximum number of operation without success. 0 unlimited. 1 no retries.
         # net_max_retries: # optional, default is 1
         # NET - Ignore hard errors. When reply 5xx errors or there is too many users.
-        net_persist_retries: 2
+        # net_persist_retries: 2
         # NET - Sets the network protocol timeout.
-        net_timeout: 36000
+        # net_timeout: 36000
         # DNS - 0 no limit trying to lookup an address otherwise try only this number of times.
-        dns_max_retries: 2
+        # dns_max_retries: 2
         # DNS - Time for DNS queries. Set to "never" to disable.
-        dns_fatal_timeout: 36000
+        # dns_fatal_timeout: 36000
      
      
     #- name: FTP Deploy

@@ -1,4 +1,4 @@
-name: .NET
+name: .NET MVC
 
 on:
   push:
@@ -23,13 +23,8 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
-      run: dotnet publish **/TransformacaoDigital.MVC.csproj --configuration Production --output ./publish --runtime win-x86 --self-contained true 
-    #- name: Upload WebApp1 Build Artifact
-    #  uses: actions/upload-artifact@v2
-    #  with:
-   #     name: Projeto_MVC
-   #     path: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
-    - name: Arquivos Para Publicacao
+      run: dotnet publish **/TransformacaoDigital.MVC.csproj --configuration Release --output ./publish --runtime win-x86 --self-contained true 
+    - name: Publicação FTP
       uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
         ftp_host: ftp.site4now.net
@@ -39,29 +34,3 @@ jobs:
         dist_target_dir: "/"
         delete: "true"
         exclude: "'^logs/' '^README.md'"
-     
-     
-    #- name: FTP Deploy
-      # You may pin to the exact commit or the version.
-      # uses: SamKirkland/FTP-Deploy-Action@2a4e9b1312ebeb73a1f72b9330c71831c1e4ce01
-      #uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      #with:
-        #server: ftp.site4now.net
-        #username: lucasjhonatah
-      #  password: ${{ secrets.FTP_SENHA }}
-        # protocol to deploy with - ftp, ftps, or ftps-legacy
-        # protocol: ftp
-        # Folder to upload from, must end with trailing slash /
-      #  local-dir: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
-        # Path to upload to on the server. Must end with trailing slash /
-        # server-dir: "./"
-        # Path and name of the state file - this file is used to track which files have been deployed
-        # state-name: # optional
-        # Prints which modifications will be made with current config options, but doesnt actually make any changes
-        # dry-run: true
-        # Deletes ALL contents of server-dir, even items in excluded with exclude argument
-    #    dangerous-clean-slate: true
-        # How verbose should the information be - warn, info, debug
-     #   log-level: verbose
-        # strict or loose
-        # security: # optional

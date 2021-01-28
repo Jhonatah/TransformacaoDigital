@@ -29,43 +29,16 @@ jobs:
     #  with:
    #     name: Projeto_MVC
    #     path: /home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/
-    - name: FTP Deployment
-      # You may pin to the exact commit or the version.
-      # uses: airvzxf/ftp-deployment-action@9efe025c218094bd451a0cb684d7cb471f4d9d4f
-      uses: airvzxf/ftp-deployment-action@latest
+    - name: Arquivos Para Publicacao
+      uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
-        # FTP Server.
-        server: ftp.site4now.net
-        # FTP User.
-        user: lucasjhonatah@ftp.site4now.net
-        # FTP Password.
-        password: ${{ secrets.FTP_SENHA }}
-        # Local directory.
-        local_dir: "./home/runner/work/TransformacaoDigital/TransformacaoDigital/publish"
-        # Remote directory.
-        # remote_dir: "./"
-        # Delete all the files inside of the remote directory.
-        # delete: true
-        # Times that the lftp will be executed if an error occurred.
-        # max_retries: 2
-        # Do not create symbolic links.
-        # no_symlinks: # optional, default is true
-        # FTP - Allow SSL encryption.
-        # ftp_ssl_allow: true # optional, default is false
-        # FTP - FEAT: Determining what extended features the FTP server supports.
-        # ftp_use_feat: # optional, default is false
-        # FTP - Delay in seconds between NOOP commands when downloading tail of a file.
-        # ftp_nop_interval: # optional, default is 2
-        # NET - Maximum number of operation without success. 0 unlimited. 1 no retries.
-        # net_max_retries: # optional, default is 1
-        # NET - Ignore hard errors. When reply 5xx errors or there is too many users.
-        # net_persist_retries: 2
-        # NET - Sets the network protocol timeout.
-        # net_timeout: 36000
-        # DNS - 0 no limit trying to lookup an address otherwise try only this number of times.
-        # dns_max_retries: 2
-        # DNS - Time for DNS queries. Set to "never" to disable.
-        # dns_fatal_timeout: 36000
+        ftp_host: ftp.site4now.net
+        ftp_username: lucasjhonatah
+        ftp_password: ${{ secrets.FTP_SENHA }}
+        local_source_dir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/"
+        dist_target_dir: "/"
+        delete: "true"
+        exclude: "'^logs/' '^README.md'"
      
      
     #- name: FTP Deploy

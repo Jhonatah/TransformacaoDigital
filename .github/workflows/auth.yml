@@ -1,4 +1,4 @@
-name: .NET MVC
+name: .NET - Autenticação
 
 on:
   push:
@@ -23,14 +23,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
-      run: dotnet publish **/TransformacaoDigital.MVC.csproj --configuration Release --output ./publish --runtime win-x86 --self-contained true 
+      run: dotnet publish **/TransformacaoDigital.Autenticacao.API.csproj --configuration Production --output ./publish-Autenticacao.API --runtime win-x86 --self-contained true 
     - name: Publicação FTP
       uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
         ftp_host: ftp.site4now.net
-        ftp_username: lucasjhonatah
+        ftp_username: authtdigital
         ftp_password: ${{ secrets.FTP_SENHA }}
-        local_source_dir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/"
+        local_source_dir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish-Autenticacao.API/"
         dist_target_dir: "/"
         delete: "true"
         exclude: "'^logs/' '^README.md'"

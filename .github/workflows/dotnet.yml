@@ -37,13 +37,13 @@ jobs:
         # FTP Server.
         server: ftp.site4now.net
         # FTP User.
-        user: lucasjhonatah
+        user: lucasjhonatah@ftp.site4now.net
         # FTP Password.
         password: ${{ secrets.FTP_SENHA }}
         # Local directory.
         local_dir: "./home/runner/work/TransformacaoDigital/TransformacaoDigital/publish"
         # Remote directory.
-        remote_dir: "./"
+        # remote_dir: "./"
         # Delete all the files inside of the remote directory.
         delete: true
         # Times that the lftp will be executed if an error occurred.

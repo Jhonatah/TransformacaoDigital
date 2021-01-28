@@ -7,7 +7,7 @@ namespace TransformacaoDigital.MVC.Controllers
     public class ValidadoresController : Controller
     {
         [AcceptVerbs("GET")]
-        public async Task<IActionResult> ValidarCNPJ(string cnpj)
+        public IActionResult ValidarCNPJ(string cnpj)
         {
             if (string.IsNullOrEmpty(cnpj)) return Json(true);
 

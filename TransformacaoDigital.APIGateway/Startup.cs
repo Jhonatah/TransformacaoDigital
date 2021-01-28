@@ -15,9 +15,17 @@ namespace TransformacaoDigital.APIGateway
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            _configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"ocelot.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"ocelot.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+
+            _configuration = builder.Build();
         }
 
         private IConfiguration _configuration { get; }

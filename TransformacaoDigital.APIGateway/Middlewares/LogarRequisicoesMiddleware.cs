@@ -43,12 +43,12 @@ namespace TransformacaoDigital.Filters.Middlewares
                 await _next.Invoke(context);
 
 
-                service.Send(QueueEnum.RequestsApiGateway,
-                    new
-                    {
-                        context.Response.StatusCode,
-                        context.Response.Headers
-                    });
+                //service.Send(QueueEnum.RequestsApiGateway,
+                //    new
+                //    {
+                //        context.Response.StatusCode,
+                //        context.Response.Headers
+                //    });
             }
             catch (Exception ex)
             {

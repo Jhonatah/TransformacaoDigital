@@ -24,7 +24,7 @@ jobs:
       uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
         ftp_host: ftp.site4now.net
-        ftp_username: mvctdigital
+        ftp_username: mvccore
         ftp_password: ${{ secrets.FTP_SENHA }}
         local_source_dir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/"
         dist_target_dir: "/"

@@ -9,6 +9,7 @@
         public const string ProcessosIndustriais_Colaboradores_LerPorID = "processosindustriais-api/usuarios/{0}";
         public const string ProcessosIndustriais_Colaboradores_Desativar = "processosindustriais-api/usuarios/{0}";
         public const string ProcessosIndustriais_Colaboradores_Retivar = "processosindustriais-api/usuarios/{0}/reativar";
+        public const string ProcessosIndustriais_Colaboradores_AlterarSenha = "processosindustriais-api/usuarios/{0}/alterarsenha";
 
         public const string ProcessosIndustriais_TiposColaboradores = "processosindustriais-api/tipousuarios";
         public const string ProcessosIndustriais_Perfis = "processosindustriais-api/perfis";

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
+using TransformacaoDigital.Library;
+using TransformacaoDigital.Library.Enumerados;
 using TransformacaoDigital.MVC.Services.Dtos;
 using TransformacaoDigital.MVC.Services.Dtos.ProcessosIndustriaisDto;
 using TransformacaoDigital.MVC.ViewModels;
@@ -79,6 +82,26 @@ namespace TransformacaoDigital.MVC.Services.Implementacoes
 
             if (result.Sucesso == false)
                 ServicosBase.NotificacaoService.NotificarErro("Houve um erro na reativação. Tente novamente mais tarde");
+        }
+
+        public async Task AlterarSenhaAsync(AlterarSenhaViewModel viewModel)
+        {
+            var senhaAtual =
+                Encriptador.Get().Encriptar(EncriptEnum.d8a49e8e450842848509f40ff9b3851b.GetName(), viewModel.SenhaAtual);
+
+            var novaSenha =
+                Encriptador.Get().Encriptar(EncriptEnum.d8a49e8e450842848509f40ff9b3851b.GetName(), viewModel.NovaSenha);
+
+            var result = await PutAsync(string.Format(RotasAPI.ProcessosIndustriais_Colaboradores_AlterarSenha, ServicosBase.UsuarioService.GetId()), new 
+            { 
+                SenhaAtual = Convert.ToBase64String(Encoding.UTF8.GetBytes(senhaAtual)),
+                NovaSenha = Convert.ToBase64String(Encoding.UTF8.GetBytes(novaSenha))
+            });
+
+            if(result.Sucesso == false)
+            {
+                ServicosBase.NotificacaoService.NotificarErro("Senhas inválidas");
+            }
         }
     }
 }

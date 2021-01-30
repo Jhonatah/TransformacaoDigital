@@ -12,7 +12,12 @@ namespace TransformacaoDigital.Library.Enumerados
         /// <summary>
         ///     Criptografia para Token
         /// </summary>
-        ea16acb359604973ba2b17498ba2d8dc
+        ea16acb359604973ba2b17498ba2d8dc,
+
+        /// <summary>
+        ///     Criptografia para alteração de senhas
+        /// </summary>
+        d8a49e8e450842848509f40ff9b3851b
     }
 
     public static class EnumExtension

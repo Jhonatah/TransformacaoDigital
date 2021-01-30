@@ -116,6 +116,25 @@ namespace TransformacaoDigital.MVC.Controllers
             return View(viewModel);
         }
 
+        public IActionResult AlterarSenha()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AlterarSenha(AlterarSenhaViewModel viewModel)
+        {
+            if(ModelState.IsValid)
+            {
+                await colaboradorService.AlterarSenhaAsync(viewModel);
+
+                if (NotificacaoService.TemNotificacao() == false)
+                    return RedirectToAction("Index", "Home");
+            }
+
+            return View(new AlterarSenhaViewModel());
+        }
+
         public async Task<PartialViewResult> ListaColaboradores(int pagina = 1)
         {
             var registros = await colaboradorService.ListarAsync(pagina);

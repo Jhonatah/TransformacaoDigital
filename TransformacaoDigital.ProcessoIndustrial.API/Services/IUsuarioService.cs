@@ -12,6 +12,8 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Services
         Task DesativarAsync(Guid usuarioId);
         Task<object> LerPorIdAsync(Guid id);
 
+        Task AlterarSenhasASync(AlterarSenhaViewModel viewModel);
+
         Task<Paginador<object>> ListarAsync(int pagina = 1, int registrosPorPagina = 10);
         Task<object> ListarTipoUsuariosAsync();
         Task<object> ListarPerfisAsync();

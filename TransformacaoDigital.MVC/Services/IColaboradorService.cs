@@ -15,6 +15,8 @@ namespace TransformacaoDigital.MVC.Services
         Task CadastrarAsync(NovoColaboradorViewModel viewModel);
         Task AlterarAsync(AlterarColaboradorViewModel viewModel);
 
+        Task AlterarSenhaAsync(AlterarSenhaViewModel viewModel);
+
         Task<IEnumerable<ComumDto>> ListarTiposUsuariosAsync();
         Task<IEnumerable<ComumDto>> ListarPerfisAsync();
         Task DesativarAsync(Guid id);

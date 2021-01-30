@@ -99,5 +99,20 @@ namespace TransformacaoDigital.ProcessoIndustrial.API.Services.Implementacoes
 
             await _usuarioRepositorio.AlterarAsync(model);
         }
+
+        public async Task AlterarSenhasASync(AlterarSenhaViewModel viewModel)
+        {
+            var model = await _usuarioRepositorio.LerPorIdAsync(viewModel.UsuarioId);
+            
+            if (model == null) throw new Exception("Usuário inexistente");
+
+            var usuarioTemp = new Usuario(string.Empty, model.Email, viewModel.SenhaAtual, model.PerfilId, model.TipoUsuarioId);
+
+            if (model.Senha != usuarioTemp.Senha) throw new Exception("Senha incorreta");
+
+            model.SetSenha(viewModel.NovaSenha);
+
+            await _usuarioRepositorio.AlterarAsync(model);
+        }
     }
 }

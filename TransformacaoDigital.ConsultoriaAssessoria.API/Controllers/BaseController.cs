@@ -31,7 +31,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
             }
         }
 
-        protected new async Task<IActionResult> Response(object result = null)
+        protected new IActionResult Response(object result = null)
         {
             try
             {

@@ -18,7 +18,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
         [HttpGet]
         public async Task<IActionResult> ListarTiposContratos()
         {
-            return await Response(await _contratoRepositorio.ListarTiposAsync());
+            return Response(await _contratoRepositorio.ListarTiposAsync());
         }
     }
 }

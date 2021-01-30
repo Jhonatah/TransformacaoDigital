@@ -8,6 +8,7 @@ namespace TransformacaoDigital.MVC.Configuracoes
         public static void SetObjetosAppSettings(this IConfiguration configuration)
         {
             AppSettings.AppGateway = configuration.GetSection("AppGateway").Get<AppGateway>();
+            AppSettings.SendGrid = configuration.GetSection("SendGrid").Get<SendGridConfig>();
         }
     }
 }

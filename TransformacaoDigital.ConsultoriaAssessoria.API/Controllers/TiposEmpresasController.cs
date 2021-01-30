@@ -19,7 +19,7 @@ namespace TransformacaoDigital.ConsultoriaAssessoria.API.Controllers
         [HttpGet]
         public async Task<IActionResult> ListarEmpresas()
         {
-            return await Response(await empresaRepositorio.ListarTiposAsync());
+            return Response(await empresaRepositorio.ListarTiposAsync());
         }
     }
 }

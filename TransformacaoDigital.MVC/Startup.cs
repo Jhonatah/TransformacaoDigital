@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using TransformacaoDigital.Mensageria;
 using TransformacaoDigital.MVC.Configuracoes;
 
 namespace TransformacaoDigital.MVC
@@ -34,6 +35,13 @@ namespace TransformacaoDigital.MVC
             services.AddHttpClient("apigateway", x =>
             {
                 x.BaseAddress = new Uri(Configuration["AppGateway:HostName"]);
+            });
+
+            services.RegisterMoMServices(new ConfigurationServer
+            {
+                HostName = Configuration["RabbitMQConfig:HostName"],
+                UserName = Configuration["RabbitMQConfig:UserName"],
+                Password = Configuration["RabbitMQConfig:Password"],
             });
 
             Configuration.SetObjetosAppSettings();

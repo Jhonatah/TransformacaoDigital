@@ -18,17 +18,13 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
       run: dotnet publish **/TransformacaoDigital.MVC.csproj --configuration Release --output ./publish --runtime win-x86 --self-contained true 
     - name: Publicação FTP
       uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
         ftp_host: ftp.site4now.net
-        ftp_username: lucasjhonatah
+        ftp_username: mvctdigital
         ftp_password: ${{ secrets.FTP_SENHA }}
         local_source_dir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish/"
         dist_target_dir: "/"

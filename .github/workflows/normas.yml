@@ -1,4 +1,4 @@
-name: .NET - Api Gateway
+name: .NET normas
 
 on:
   push:
@@ -18,19 +18,15 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
     - name: Arquivos Para Publicacao
-      run: dotnet publish **/TransformacaoDigital.APIGateway.csproj --configuration Production --output ./publish-APIGateway --runtime win-x86 --self-contained true 
+      run: dotnet publish **/TransformacaoDigital.Normas.API.csproj --configuration Release --output ./publish-Normas --runtime win-x86 --self-contained true 
     - name: Publicação FTP
       uses: kevinpainchaud/simple-ftp-deploy-action@v1.2.1
       with:
         ftp_host: ftp.site4now.net
-        ftp_username: gateway
+        ftp_username: normas
         ftp_password: ${{ secrets.FTP_SENHA }}
-        local_source_dir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish-APIGateway/"
+        local_source_dir: "/home/runner/work/TransformacaoDigital/TransformacaoDigital/publish-Normas/"
         dist_target_dir: "/"
         delete: "true"
         exclude: "'^logs/' '^README.md'"

@@ -13,10 +13,10 @@ namespace TransformacaoDigital.APIGateway
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostBuilderContext, config) =>
-                {
-                    config.AddJsonFile($"ocelot.json");
-                })
+            .ConfigureAppConfiguration((host, config) =>
+            {
+                config.AddJsonFile("ocelot.json");
+            })
                 .ConfigureWebHostDefaults(config => 
                 {
                     config.UseStartup<Startup>();

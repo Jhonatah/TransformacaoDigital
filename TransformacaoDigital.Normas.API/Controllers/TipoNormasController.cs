@@ -16,7 +16,7 @@ namespace TransformacaoDigital.Normas.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Listar()
         {
-            return await Response(await _normasRepositorio.ListarTiposNormasAsync());
+            return Response(await _normasRepositorio.ListarTiposNormasAsync());
         }
     }
 }

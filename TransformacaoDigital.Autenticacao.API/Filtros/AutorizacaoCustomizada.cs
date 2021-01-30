@@ -45,7 +45,7 @@ namespace TransformacaoDigital.Autenticacao.API.Filtros
                     return;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 NegarRequisicao(context);
             }

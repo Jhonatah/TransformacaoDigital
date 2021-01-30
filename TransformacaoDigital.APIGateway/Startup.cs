@@ -10,22 +10,16 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using System;
 using System.Text;
+using TransformacaoDigital.Filters.Middlewares;
+using TransformacaoDigital.Mensageria;
 
 namespace TransformacaoDigital.APIGateway
 {
     public class Startup
     {
-        public Startup(IWebHostEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddJsonFile($"ocelot.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"ocelot.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-
-            _configuration = builder.Build();
+            _configuration = configuration;
         }
 
         private IConfiguration _configuration { get; }
@@ -33,8 +27,16 @@ namespace TransformacaoDigital.APIGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.RegisterMoMServices(new ConfigurationServer
+            {
+                HostName = _configuration["RabbitMQConfig:HostName"],
+                UserName = _configuration["RabbitMQConfig:UserName"],
+                Password = _configuration["RabbitMQConfig:Password"],
+            });
+
             var audienceConfig = _configuration.GetSection("ConfiguracaoJWT");
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(audienceConfig["SecurityKey"]));
+
             var tokenValidationParameters = new TokenValidationParameters
             {
                 ValidateIssuerSigningKey = true,
@@ -63,8 +65,10 @@ namespace TransformacaoDigital.APIGateway
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
             }
+            app.UseDeveloperExceptionPage();
+
+            app.UseMiddleware<LogarRequisicoesMiddleware>();
 
             app.UseHttpsRedirection();
 
@@ -80,9 +84,10 @@ namespace TransformacaoDigital.APIGateway
                 });
             });
 
-            await app
+             app
                 .UseAuthentication()
-                .UseOcelot();
+                .UseOcelot()
+                .Wait();
         }
     }
 }

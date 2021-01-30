@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
 namespace TransformacaoDigital.Normas.API.Controllers
 {
@@ -8,7 +7,7 @@ namespace TransformacaoDigital.Normas.API.Controllers
     [ApiExplorerSettings(GroupName = "v1")]
     public abstract class BaseNormasController : ControllerBase
     {
-        protected new async Task<IActionResult> Response(object result = null)
+        protected new IActionResult Response(object result = null)
         {
             try
             {

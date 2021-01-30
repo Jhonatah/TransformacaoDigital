@@ -17,8 +17,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 62644
+          "Host": "lucasjhonatah-001-site2.etempurl.com",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/normas-api/{everything}",
@@ -37,8 +37,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 62633
+          "Host": "lucasjhonatah-001-site1.etempurl.com",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/consultoriaassessoria-api/{everything}",
@@ -57,8 +57,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 62649
+          "Host": "lucasjhonatah-001-site4.etempurl.com",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/processosindustriais-api/{everything}",
@@ -74,8 +74,8 @@
     }
   ],
   "GlobalConfiguration": {
-    //"RequestIdKey": "OcRequestId",
-    //"AdministrationPath": "/administration
-    "BaseUrl": "lucasjhonatah-001-site2.etempurl.com"
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration",
+    "BaseUrl": "http://lucasjhonatah-001-site6.etempurl.com"
   }
 }

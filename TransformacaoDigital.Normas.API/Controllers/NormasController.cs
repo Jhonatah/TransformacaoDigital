@@ -20,14 +20,14 @@ namespace TransformacaoDigital.Normas.API.Controllers
         [Route("{pagina:int}")]
         public async Task<IActionResult> Listar(int pagina = 1)
         {
-            return await Response(await _normasRepositorio.ListarAsync(pagina));
+            return Response(await _normasRepositorio.ListarAsync(pagina));
         }
 
         [HttpGet]
         [Route("{id:guid}")]
         public async Task<IActionResult> LerPorId(Guid id)
         {
-            return await Response(await _normasRepositorio.LerPorIdAsync(id));
+            return Response(await _normasRepositorio.LerPorIdAsync(id));
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace TransformacaoDigital.Normas.API.Controllers
                         viewModel.Nome,
                         viewModel.Descricao));
 
-                return await Response();
+                return Response();
             }
 
             return ResponseBadRequest("Objeto inválido");
@@ -64,7 +64,7 @@ namespace TransformacaoDigital.Normas.API.Controllers
                         viewModel.Nome,
                         viewModel.Descricao));
 
-                return await Response();
+                return Response();
             }
 
             return ResponseBadRequest("Objeto inválido");

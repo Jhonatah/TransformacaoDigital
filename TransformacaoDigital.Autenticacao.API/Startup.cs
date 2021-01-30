@@ -87,8 +87,8 @@ namespace TransformacaoDigital.Autenticacao.API
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
             }
+            app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 

@@ -8,7 +8,9 @@ namespace TransformacaoDigital.Mensageria
         Normas,
         ProcessosInternos,
         IntegracaoERPProcessosInternos,
-        EnviarEmail
+        EnviarEmail,
+        RequestsApiGateway,
+        Exceptions
     }
 
     public static class EnumExtension

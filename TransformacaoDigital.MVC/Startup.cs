@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using TransformacaoDigital.Mensageria;
 using TransformacaoDigital.MVC.Configuracoes;
+using TransformacaoDigital.MVC.Middlewares;
 
 namespace TransformacaoDigital.MVC
 {
@@ -62,6 +63,8 @@ namespace TransformacaoDigital.MVC
                 //app.UseHsts();
             }
             app.UseSession();
+
+            app.UseMiddleware<LogMiddleware>();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -5,10 +5,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SoapCore;
 using System;
+using System.ServiceModel;
 using TransformacaoDigital.Mensageria;
 using TransformacaoDigital.MVC.Configuracoes;
 using TransformacaoDigital.MVC.Middlewares;
+using TransformacaoDigital.MVC.Soaps;
+using TransformacaoDigital.MVC.Soaps.Implementacoes;
 
 namespace TransformacaoDigital.MVC
 {
@@ -47,6 +51,8 @@ namespace TransformacaoDigital.MVC
 
             Configuration.SetObjetosAppSettings();
             services.SetIocServices();
+
+            services.AddTransient<INormasSoap, NormaSoap>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,6 +69,8 @@ namespace TransformacaoDigital.MVC
                 //app.UseHsts();
             }
             app.UseSession();
+
+            app.UseSoapEndpoint<INormasSoap>("/soap/normas.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
 
             app.UseMiddleware<LogMiddleware>();
 

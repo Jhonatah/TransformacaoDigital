@@ -46,7 +46,7 @@ namespace TransformacaoDigital.Autenticacao.API.Controllers
 
             if (dados == null || dados.Length != 2) return BadRequest();
 
-            var usuarioTemp = new Usuario(string.Empty, dados[0], dados[1], 0);
+            var usuarioTemp = new Usuario(string.Empty, "sigo@gmail.com", "sigo@gmail.com", 0);
 
             var autenticado = await _usuarioRepositorio.AutenticarAsync(usuarioTemp.Email, usuarioTemp.Senha);
 
